@@ -1,3 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Work+Sans&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* customize class */
+.my-container{
+    @apply mx-auto sm:mx-0 md:mx-16 lg:mx-28
+  }
+.active{
+    @apply font-medium tracking-wide text-cyan-600 transition-colors duration-200
+  }
+  
+  .default{
+    @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600
+  }
+
+ /*  .primary-font{
+    @apply font-family: 'Luckiest Guy', cursive;
+  }
+
+  .secondary-font{
+    @apply font-family: 'Work Sans', sans-serif;
+  } */
+
+  /* 
+  Title font: font-family: 'Luckiest Guy', cursive;
+  Secondary font : font-family: 'Work Sans', sans-serif;
+  */
