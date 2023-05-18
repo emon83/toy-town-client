@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../../assets/logos/logo.png'
+import { AuthContext } from "../../../providers/AuthProviders";
 
 const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+      logOut()
+        .then(() => {})
+        .catch((error) => console.log(error));
+    };
     return (
         <div className='my-container py-5 px-4  mx-auto'>
       <div className='relative flex items-center justify-between'>
@@ -38,26 +46,6 @@ const Navbar = () => {
               All Toys
             </NavLink>
           </li>
-         {/*  <li>
-            <NavLink
-              to='/'
-              aria-label='My Toys'
-              title='My Toys'
-              className={({ isActive }) => (isActive ? 'active' : 'default')}
-            >
-              My Toys
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to='/'
-              aria-label='Add A Toy'
-              title='Add A Toy'
-              className={({ isActive }) => (isActive ? 'active' : 'default')}
-            >
-              Add A Toy
-            </NavLink>
-          </li> */}
           <li>
             <NavLink
               to='/blog'
@@ -68,26 +56,48 @@ const Navbar = () => {
               Blogs
             </NavLink>
           </li>
+           { user?.email ? 
+          <>
           <li>
-            <Link
-              to='/login'
-              aria-label='Login'
-              title='Login'
-              className={({ isActive }) => (isActive ? 'active' : 'default')}
-            >
-              <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6">Login</button>
-            </Link>
-          </li>
-         {/*  <li>
             <NavLink
-              to='/'
+              to='/myToy'
               aria-label='My Toys'
               title='My Toys'
               className={({ isActive }) => (isActive ? 'active' : 'default')}
             >
               My Toys
             </NavLink>
-          </li> */}
+          </li>
+          <li>
+            <NavLink
+              to='/addAToy'
+              aria-label='Add A Toy'
+              title='Add A Toy'
+              className={({ isActive }) => (isActive ? 'active' : 'default')}
+            >
+              Add A Toy
+            </NavLink>
+          </li>
+          <li>
+            <Link
+              aria-label='Logout'
+              title='Logout'
+            >
+              <button onClick={handleLogout} className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6">Logout</button>
+            </Link>
+          </li>
+          </>
+            :
+          <li> 
+            <Link
+              to='/login'
+              aria-label='Login'
+              title='Login'
+            >
+              <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6">Login</button>
+            </Link>
+          </li>}
+        
         </ul>
         <div className='lg:hidden'>
           <button
@@ -155,26 +165,6 @@ const Navbar = () => {
                         All Toys
                       </Link>
                     </li>
-                    {/* <li>
-                      <Link
-                        to='/'
-                        aria-label='My Toys'
-                        title='My Toys'
-                        className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
-                      >
-                        My Toys
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to='/'
-                        aria-label='Add A Toy'
-                        title='Add A Toy'
-                        className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
-                      >
-                        Add A Toy
-                      </Link>
-                    </li> */}
                     <li>
                       <Link
                         to='/blog'
@@ -185,7 +175,40 @@ const Navbar = () => {
                         Blog
                       </Link>
                     </li>
+                    { user?.email ?(
+                    <>
                     <li>
+                      <Link
+                        to='/myToy'
+                        aria-label='My Toys'
+                        title='My Toys'
+                        className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                      >
+                        My Toys
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to='/addAToy'
+                        aria-label='Add A Toy'
+                        title='Add A Toy'
+                        className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                      >
+                        Add A Toy
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        aria-label='Logout'
+                        title='Logout'
+                        className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                      >
+                        <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6 -ml-2">Logout</button>
+                      </Link>
+                    </li>
+                    </>)
+
+                    :(<li>
                       <Link
                         to='/login'
                         aria-label='Login'
@@ -194,7 +217,7 @@ const Navbar = () => {
                       >
                         <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6 -ml-2">Login</button>
                       </Link>
-                    </li>
+                    </li>)}
                   </ul>
                 </nav>
               </div>
