@@ -6,9 +6,9 @@ import './PrivateRoute.css'
 const PrivateRoute = ({children}) => {
         const { user, loading } = useContext(AuthContext);
     const location = useLocation();
-    /* if (loading) {
+    if (loading) {
         return <div className="loader mx-auto"></div>
-    } */
+    }
     if (user?.email) {
         return children;
     }
