@@ -10,6 +10,7 @@
           "email": "seller1@example.com",
           "price": 10.99,
           "availableQuantity": 5,
+          "rating": 4.5,
           "detailsDescription": "This is a description for Science Toy. The 'Solar System Explorer' is a science toy that brings the wonders of outer space into your hands. It consists of a model of the solar system, complete with accurately scaled planets and a glowing sun. With the help of a motorized mechanism, the planets orbit around the sun, demonstrating the concept of planetary motion."
         },
         {
@@ -20,6 +21,7 @@
           "email": "seller2@example.com",
           "price": 15.99,
           "availableQuantity": 3,
+          "rating": 4.2,
           "detailsDescription": "This is a description for Science Toy. The 'Solar System Explorer' is a science toy that brings the wonders of outer space into your hands. It consists of a model of the solar system, complete with accurately scaled planets and a glowing sun. With the help of a motorized mechanism, the planets orbit around the sun, demonstrating the concept of planetary motion."
         },
         {
@@ -30,6 +32,7 @@
           "email": "seller3@example.com",
           "price": 12.99,
           "availableQuantity": 8,
+          "rating": 4.8,
           "detailsDescription": "This is a description for Science Toy. The 'Solar System Explorer' is a science toy that brings the wonders of outer space into your hands. It consists of a model of the solar system, complete with accurately scaled planets and a glowing sun. With the help of a motorized mechanism, the planets orbit around the sun, demonstrating the concept of planetary motion."
         }
       ]
@@ -45,6 +48,7 @@
           "email": "seller4@example.com",
           "price": 9.99,
           "availableQuantity": 2,
+          "rating": 4.6,
           "detailsDescription": "This is a description for Language Toy.The 'Word Builder' is a language toy designed to enhance vocabulary and language skills in a fun and interactive way. It consists of a set of colorful letter blocks with printed letters on each side. Children can use these blocks to create words by arranging them in different combinations. "
         },
         {
@@ -55,6 +59,7 @@
           "email": "seller5@example.com",
           "price": 17.99,
           "availableQuantity": 6,
+          "rating": 4.4,
           "detailsDescription": "This is a description for Language Toy.The 'Word Builder' is a language toy designed to enhance vocabulary and language skills in a fun and interactive way. It consists of a set of colorful letter blocks with printed letters on each side. Children can use these blocks to create words by arranging them in different combinations. "
         },
         {
@@ -65,6 +70,7 @@
           "email": "seller6@example.com",
           "price": 14.99,
           "availableQuantity": 4,
+          "rating": 4.8,
           "detailsDescription": "This is a description for Language Toy.The 'Word Builder' is a language toy designed to enhance vocabulary and language skills in a fun and interactive way. It consists of a set of colorful letter blocks with printed letters on each side. Children can use these blocks to create words by arranging them in different combinations. "
         }
       ]
@@ -80,6 +86,7 @@
           "email": "seller7@example.com",
           "price": 11.99,
           "availableQuantity": 7,
+          "rating": 4.9,
           "detailsDescription": "This is a description for Engineering Toy. The 'Magnetic Gear Set' is an engineering toy that introduces children to the principles of gears and mechanical systems. The set includes magnetic components such as gears, axles, and connectors that can be easily assembled and disassembled. The toy encourages problem-solving skills and fosters an understanding of basic engineering concepts in a hands-on and enjoyable way."
         },
         {
@@ -90,6 +97,7 @@
           "email": "seller8@example.com",
           "price": 16.99,
           "availableQuantity": 9,
+          "rating": 4.2,
           "detailsDescription": "This is a description for Engineering Toy. The 'Magnetic Gear Set' is an engineering toy that introduces children to the principles of gears and mechanical systems. The set includes magnetic components such as gears, axles, and connectors that can be easily assembled and disassembled. The toy encourages problem-solving skills and fosters an understanding of basic engineering concepts in a hands-on and enjoyable way."
         },
         {
@@ -100,6 +108,7 @@
           "email": "seller9@example.com",
           "price": 13.99,
           "availableQuantity": 1,
+          "rating": 4.7,
           "detailsDescription": "This is a description for Engineering Toy. The 'Magnetic Gear Set' is an engineering toy that introduces children to the principles of gears and mechanical systems. The set includes magnetic components such as gears, axles, and connectors that can be easily assembled and disassembled. The toy encourages problem-solving skills and fosters an understanding of basic engineering concepts in a hands-on and enjoyable way."
         }
       ]
