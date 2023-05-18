@@ -1,5 +1,5 @@
 import "./Footer.css";
-import logo from '../../../assets/logo/logo.png'
+import logo from '../../../assets/logos/logo.png'
 import { BsFacebook, BsInstagram, BsTwitter ,BsYoutube } from 'react-icons/bs';
 
 const Footer = () => {

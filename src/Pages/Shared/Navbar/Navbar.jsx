@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from '../../../assets/logo/logo.png'
+import logo from '../../../assets/logos/logo.png'
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -70,12 +70,12 @@ const Navbar = () => {
           </li>
           <li>
             <Link
-              to='/'
-              aria-label='My Toys'
-              title='My Toys'
+              to='/login'
+              aria-label='Login'
+              title='Login'
               className={({ isActive }) => (isActive ? 'active' : 'default')}
             >
-              <button className="btn bg-cyan-400 hover:bg-cyan-500 border-none h-4 rounded-3xl btn-sm px-6">Login</button>
+              <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6">Login</button>
             </Link>
           </li>
          {/*  <li>
@@ -188,11 +188,11 @@ const Navbar = () => {
                     <li>
                       <Link
                         to='/login'
-                        aria-label='My Toys'
-                        title='About Us'
+                        aria-label='Login'
+                        title='Login'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
-                        <button className="btn bg-cyan-400 hover:bg-cyan-500 border-none h-4 rounded-3xl btn-sm px-6 -ml-2">Login</button>
+                        <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6 -ml-2">Login</button>
                       </Link>
                     </li>
                   </ul>
