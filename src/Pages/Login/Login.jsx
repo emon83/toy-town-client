@@ -2,33 +2,36 @@ import { Link } from 'react-router-dom';
 import './Login.css'
 import { useForm } from "react-hook-form";
 import logo1 from '../../assets/logos/google.png'
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProviders';
 
 const Login = () => {
+    const { signIn, googleSignIn } = useContext(AuthContext);
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm();
       const onSubmit = (data) => {
-        /* const email = data.email;
+        const email = data.email;
         const password = data.password;
         signIn(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, {replace: true});
+                //navigate(from, {replace: true});
             })
-            .catch(error => console.log(error)) */
-            console.log(data);
+            .catch(error => console.log(error))
+            //console.log(data);
       };
 
       const handleGoogleSignIn = () => {
-        /* googleSignIn()
+        googleSignIn()
         .then(result => {
           console.log(result.user);
-          navigate(from, { replace: true });
+          //navigate(from, { replace: true });
         })
-        .catch(error => console.log(error)) */
+        .catch(error => console.log(error))
       }
     return (
         <div className="my-4 login-card mx-auto">

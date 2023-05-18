@@ -2,25 +2,37 @@ import { Link } from 'react-router-dom';
 import './SignUp.css'
 import { useForm } from "react-hook-form";
 import logo1 from '../../assets/logos/google.png'
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProviders';
 
 const SignUp = () => {
-    //const {createUser} = useContext(AuthContext);
+    const { createUser, googleSignIn} = useContext(AuthContext);
     const {
       register,
       handleSubmit,
       formState: { errors },
     } = useForm();
     const onSubmit = (data) => {
-      /* const email = data.email;
+      const email = data.email;
       const password = data.password;
       createUser(email, password)
           .then(result => {
               const user = result.user;
               console.log(user);
           })
-          .catch(error => console.log(error)) */
+          .catch(error => console.log(error))
           console.log(data);
     };
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+        .then(result => {
+          console.log(result.user);
+          //navigate(from, { replace: true });
+        })
+        .catch(error => console.log(error))
+      }
+
     return (
         <div className="my-4 signUp-card mx-auto">
         <h2 className="text-2xl font-bold mb-8">Sign Up Please</h2>
@@ -46,7 +58,7 @@ const SignUp = () => {
         </form>
         <div className="divider mt-10">OR</div>
         <div>
-        <div className="flex items-center social-login my-4">
+        <div onClick={handleGoogleSignIn} className="flex items-center social-login my-4">
             <img className="w-8 h-8 ml-4" src={logo1} alt="" />
             <p className="mx-auto">Continue with Google</p>
         </div>
