@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import logo1 from '../../assets/logos/google.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProviders';
+import Swal from 'sweetalert2';
+import { updateProfile } from 'firebase/auth';
 
 const SignUp = () => {
     const { createUser, googleSignIn} = useContext(AuthContext);
@@ -13,24 +15,53 @@ const SignUp = () => {
       formState: { errors },
     } = useForm();
     const onSubmit = (data) => {
+      const name = data.userName;
       const email = data.email;
       const password = data.password;
+      const photoURL = data.photoUrl;
       createUser(email, password)
           .then(result => {
-              const user = result.user;
-              console.log(user);
+              const loggedUser = result.user;
+              console.log(loggedUser);
+              updateUserData(result.user, name, photoURL);
+              Swal.fire({
+                icon: 'success',
+                title: 'Yep...',
+                text: 'User signUp successfully!',
+              })
           })
           .catch(error => console.log(error))
           console.log(data);
     };
 
+    const updateUserData = (user, name, photoURl) =>{
+        updateProfile(user, {
+          displayName:name, 
+          photoURL: photoURl,
+        })
+        .then(() => {
+          console.log("user name updated successfully");
+        })
+        .catch((error) => {
+          //setError(error.message);
+          console.log(error);
+        })
+      }
+
     const handleGoogleSignIn = () => {
         googleSignIn()
         .then(result => {
           console.log(result.user);
+          Swal.fire({
+            icon: 'success',
+            title: 'Yep...',
+            text: 'User login successfully!',
+          })
           //navigate(from, { replace: true });
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+        })
       }
 
     return (

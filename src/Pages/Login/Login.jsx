@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import logo1 from '../../assets/logos/google.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProviders';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
@@ -19,6 +20,11 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Yep...',
+                    text: 'User login successfully!',
+                  })
                 //navigate(from, {replace: true});
             })
             .catch(error => console.log(error))
@@ -29,6 +35,11 @@ const Login = () => {
         googleSignIn()
         .then(result => {
           console.log(result.user);
+          Swal.fire({
+            icon: 'success',
+            title: 'Yep...',
+            text: 'User login successfully!',
+          })
           //navigate(from, { replace: true });
         })
         .catch(error => console.log(error))
