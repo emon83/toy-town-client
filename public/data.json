@@ -1,0 +1,108 @@
+[
+    {
+      "category": "Science Toys",
+      "toys": [
+        {
+          "_id" : 1,
+          "toyImage": "https://i.ibb.co/y0VfBMd/medical-microscope.png",
+          "toyName": "Medical Microscope",
+          "sellerName": "Emma Thompson",
+          "email": "seller1@example.com",
+          "price": 10.99,
+          "availableQuantity": 5,
+          "detailsDescription": "This is a description for Science Toy. The 'Solar System Explorer' is a science toy that brings the wonders of outer space into your hands. It consists of a model of the solar system, complete with accurately scaled planets and a glowing sun. With the help of a motorized mechanism, the planets orbit around the sun, demonstrating the concept of planetary motion."
+        },
+        {
+          "_id" : 2,
+          "toyImage": "https://i.ibb.co/4j1vntD/medical-equipment.png",
+          "toyName": "Medical-Equipment",
+          "sellerName": "Samuel Rodriguez",
+          "email": "seller2@example.com",
+          "price": 15.99,
+          "availableQuantity": 3,
+          "detailsDescription": "This is a description for Science Toy. The 'Solar System Explorer' is a science toy that brings the wonders of outer space into your hands. It consists of a model of the solar system, complete with accurately scaled planets and a glowing sun. With the help of a motorized mechanism, the planets orbit around the sun, demonstrating the concept of planetary motion."
+        },
+        {
+          "_id" : 3,
+          "toyImage": "https://i.ibb.co/PZ43Pmp/chemistry-arrangement.png",
+          "toyName": "Chemistry Arrangement",
+          "sellerName": "Chloe Davis",
+          "email": "seller3@example.com",
+          "price": 12.99,
+          "availableQuantity": 8,
+          "detailsDescription": "This is a description for Science Toy. The 'Solar System Explorer' is a science toy that brings the wonders of outer space into your hands. It consists of a model of the solar system, complete with accurately scaled planets and a glowing sun. With the help of a motorized mechanism, the planets orbit around the sun, demonstrating the concept of planetary motion."
+        }
+      ]
+    },
+    {
+      "category": "Language Toys",
+      "toys": [
+        {
+          "_id" : 1,
+          "toyImage": "https://i.ibb.co/7QpPHSN/fidget-pop-it-toy-rainbow-color-antistress-fun-educational.png",
+          "toyName": "Alphabet Antistress",
+          "sellerName": "Liam Patel",
+          "email": "seller4@example.com",
+          "price": 9.99,
+          "availableQuantity": 2,
+          "detailsDescription": "This is a description for Language Toy.The 'Word Builder' is a language toy designed to enhance vocabulary and language skills in a fun and interactive way. It consists of a set of colorful letter blocks with printed letters on each side. Children can use these blocks to create words by arranging them in different combinations. "
+        },
+        {
+          "_id" : 2,
+          "toyImage": "https://i.ibb.co/NrZg9Ns/wooden-cubes-with-love-inscription.png",
+          "toyName": "Wooden Cubes",
+          "sellerName": "Sophia Nguyen",
+          "email": "seller5@example.com",
+          "price": 17.99,
+          "availableQuantity": 6,
+          "detailsDescription": "This is a description for Language Toy.The 'Word Builder' is a language toy designed to enhance vocabulary and language skills in a fun and interactive way. It consists of a set of colorful letter blocks with printed letters on each side. Children can use these blocks to create words by arranging them in different combinations. "
+        },
+        {
+          "_id" : 3,
+          "toyImage": "https://i.ibb.co/1KHTHx8/letter-game.png",
+          "toyName": "Letter Game",
+          "sellerName": "Ethan Johnson",
+          "email": "seller6@example.com",
+          "price": 14.99,
+          "availableQuantity": 4,
+          "detailsDescription": "This is a description for Language Toy.The 'Word Builder' is a language toy designed to enhance vocabulary and language skills in a fun and interactive way. It consists of a set of colorful letter blocks with printed letters on each side. Children can use these blocks to create words by arranging them in different combinations. "
+        }
+      ]
+    },
+    {
+      "category": "Engineering Toys",
+      "toys": [
+        {
+          "_id" : 1,
+          "toyImage": "https://i.ibb.co/F6sSxSK/flower-robot-environment-cute-concept.jpg",
+          "toyName": "Robot Environment",
+          "sellerName": "Olivia Martinez",
+          "email": "seller7@example.com",
+          "price": 11.99,
+          "availableQuantity": 7,
+          "detailsDescription": "This is a description for Engineering Toy. The 'Magnetic Gear Set' is an engineering toy that introduces children to the principles of gears and mechanical systems. The set includes magnetic components such as gears, axles, and connectors that can be easily assembled and disassembled. The toy encourages problem-solving skills and fosters an understanding of basic engineering concepts in a hands-on and enjoyable way."
+        },
+        {
+           "_id" : 2,
+          "toyImage": "https://i.ibb.co/J3Bh9Vf/close-up-home-made-robot.jpg",
+          "toyName": "Home Made Robot",
+          "sellerName": "Noah Smith",
+          "email": "seller8@example.com",
+          "price": 16.99,
+          "availableQuantity": 9,
+          "detailsDescription": "This is a description for Engineering Toy. The 'Magnetic Gear Set' is an engineering toy that introduces children to the principles of gears and mechanical systems. The set includes magnetic components such as gears, axles, and connectors that can be easily assembled and disassembled. The toy encourages problem-solving skills and fosters an understanding of basic engineering concepts in a hands-on and enjoyable way."
+        },
+        {
+          "_id" : 3,
+          "toyImage": "https://i.ibb.co/vcg4YHz/pair-robots.png",
+          "toyName": "AI Robots",
+          "sellerName": "Ava Brown",
+          "email": "seller9@example.com",
+          "price": 13.99,
+          "availableQuantity": 1,
+          "detailsDescription": "This is a description for Engineering Toy. The 'Magnetic Gear Set' is an engineering toy that introduces children to the principles of gears and mechanical systems. The set includes magnetic components such as gears, axles, and connectors that can be easily assembled and disassembled. The toy encourages problem-solving skills and fosters an understanding of basic engineering concepts in a hands-on and enjoyable way."
+        }
+      ]
+    }
+  ]
+  

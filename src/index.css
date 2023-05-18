@@ -18,13 +18,12 @@
     @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600
   }
 
- /*  .primary-font{
-    @apply font-family: 'Luckiest Guy', cursive;
-  }
-
-  .secondary-font{
-    @apply font-family: 'Work Sans', sans-serif;
-  } */
+.primary-font{
+    font-family: 'Luckiest Guy', cursive;
+}
+.secondary-font{
+    font-family: 'Work Sans', sans-serif;
+}
 
   /* 
   Title font: font-family: 'Luckiest Guy', cursive;
