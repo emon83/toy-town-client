@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./ShopByCategory.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import CateGoryToyDetails from "../../CategoryToyDetails/CateGoryToyDetails";
 
 const ShopByCategory = () => {
   const [scienceToys, setScienceToys] = useState([]);
@@ -23,7 +24,7 @@ const ShopByCategory = () => {
       .then((res) => res.json())
       .then((data) => setEngineeringToys(data));
   }, []);
-  console.log(scienceToys[0]?.toys);
+  //console.log(scienceToys[0]?.toys);
   return (
     <div className="mt-28 my-container">
       <div className="text-center">
@@ -51,6 +52,7 @@ const ShopByCategory = () => {
                   <p>{toy.rating}</p>
                   <label htmlFor="my-modal-5" className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
                   View Details</label>
+                  <CateGoryToyDetails scienceToys={scienceToys[0].toys}/>
                 </div>
               ))}
             </div>

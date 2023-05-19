@@ -1,11 +1,28 @@
 import { useForm } from "react-hook-form";
-const UpdateToy = ({handleToyUpdate, toy}) => {
+const UpdateToy = ({ toy, control, setControl}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  console.log(toy);
+  
+  const onSubmit = (data) => {
+    fetch(`http://localhost:5000/myToy/${toy._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.modifiedCount > 0) {
+            setControl(!control);
+            alert('updated toy')
+          }
+          console.log(result);
+        });  
+  };
+
   return (
     <div>
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />
@@ -30,7 +47,7 @@ const UpdateToy = ({handleToyUpdate, toy}) => {
             {errors.exampleRequired && <span>This field is required</span>}
 
           <div className="text-center">
-          <input className="btn bg-pink-500 hover:bg-pink-600 border-none btn-sm rounded-3xl w-20 text-center" onClick={handleToyUpdate} type="submit" />
+          <input  className="btn bg-pink-500 hover:bg-pink-600 border-none btn-sm rounded-3xl w-20 text-center"  type="submit" />
           </div>
           </form>
         </div>
