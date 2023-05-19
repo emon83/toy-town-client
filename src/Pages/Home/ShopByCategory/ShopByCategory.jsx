@@ -5,6 +5,8 @@ import "react-tabs/style/react-tabs.css";
 import { Link } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const ShopByCategory = () => {
   const [categoryData, setCategoryData] = useState([]);
@@ -48,11 +50,14 @@ const ShopByCategory = () => {
               categoryData.map((toy) => (
                 <div key={toy._id} className="p-6 text-center" data-aos="fade-up">
                   <img src={toy.toyImage} alt="" />
-                  <h4>{toy.toyName}</h4>
-                  <p>${toy.price}</p>
-                  <p>{toy.rating}</p>
+                  <h4 className="text-lg font-bold mt-6 mb-2">{toy.toyName}</h4>
+                  <p className="">Price: ${toy.price}</p>
+                  <div className="flex justify-center items-center my-4">
+                <Rating style={{ maxWidth: 100 }} value={5} />
+                <p>{toy.rating}</p>
+                </div>
                  <Link to={`categoryToyDetails/${toy._id}`}>
-                 <button  className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">Details</button>
+                 <button  className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">View Details</button>
                  </Link>
                 </div>
               ))}
@@ -63,11 +68,14 @@ const ShopByCategory = () => {
               {categoryData && categoryData.map((toy) => (
                 <div key={toy._id} className="p-6 text-center" data-aos="fade-up">
                 <img src={toy.toyImage} alt="" />
-                <h4>{toy.toyName}</h4>
-                <p>${toy.price}</p>
+                <h4 className="text-lg font-bold mt-6 mb-2">{toy.toyName}</h4>
+                <p className="">Price: ${toy.price}</p>
+                <div className="flex justify-center items-center my-4">
+                <Rating style={{ maxWidth: 100 }} value={5} />
                 <p>{toy.rating}</p>
+                </div>
                 <Link to={`categoryToyDetails/${toy._id}`}>
-                 <button  className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">Details</button>
+                 <button  className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">View Details</button>
                  </Link>
               </div>
               ))}
@@ -78,11 +86,14 @@ const ShopByCategory = () => {
             {categoryData && categoryData.map((toy) => (
               <div key={toy._id} className="p-6 text-center" data-aos="fade-up">
               <img src={toy.toyImage} alt="" />
-              <h4>{toy.toyName}</h4>
-              <p>${toy.price}</p>
-              <p>{toy.rating}</p>
+              <h4 className="text-lg font-bold mt-6 mb-2">{toy.toyName}</h4>
+              <p className="">Price: ${toy.price}</p>
+              <div className="flex justify-center items-center my-4">
+                <Rating style={{ maxWidth: 100 }} value={5} />
+                <p>{toy.rating}</p>
+                </div>
               <Link to={`categoryToyDetails/${toy._id}`}>
-                 <button  className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">Details</button>
+                 <button  className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">View Details</button>
                  </Link>
             </div>
             ))}
