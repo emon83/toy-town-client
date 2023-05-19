@@ -3,12 +3,14 @@ import { AuthContext } from "../../providers/AuthProviders";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import UpdateToy from "../UpdateToy/UpdateToy";
 import Swal from "sweetalert2";
+import useTitle from "../../hooks/useTitle";
 
 const MyToy = () => {
   const { user } = useContext(AuthContext);
-
   const [toysData, setToysData] = useState();
   const [control, setControl] = useState(false);
+  useTitle("My Toys");
+
   useEffect(() => {
     fetch(`http://localhost:5000/myToys/${user?.email}`)
       .then((res) => res.json())

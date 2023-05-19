@@ -5,11 +5,13 @@ import logo1 from '../../assets/logos/google.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProviders';
 import Swal from 'sweetalert2';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate(); 
+    useTitle("Login");
 
     const from = location.state?.from?.pathname || '/';
     const {

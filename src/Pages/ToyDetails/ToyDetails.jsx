@@ -5,16 +5,18 @@ import { MdEmojiTransportation } from 'react-icons/md';
 import { TbIroningOff } from 'react-icons/tb';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import useTitle from "../../hooks/useTitle";
 
 const ToyDetails = () => {
     const data = useLoaderData();
-    console.log(data[0]);
+    useTitle("Toy Details");
+    
     const {PhotoURL, toyName, description, price, subCategory, quantity, rating, sellerName, sellerEmail,} = data[0]
     return (
         <div>
-           <div className="lg:flex gap-10 my-container lg:w-[1340px]">
+           <div className="lg:flex gap-10 my-container lg:w-[1340px] mt-10">
             <div className="lg:w-1/2">
-                <img className="" src={PhotoURL} alt="" />
+                <img className="rounded-sm" src={PhotoURL} alt="" />
             </div>
             <div className="lg:w-1/2">
                 <h2 className="secondary-font text-4xl font-bold">{toyName}</h2>

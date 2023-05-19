@@ -3,10 +3,12 @@ import './AddAToy.css'
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
+import useTitle from "../../hooks/useTitle";
 
 const AddAToy = () => {
     const { user } = useContext(AuthContext);
-    console.log(user);
+    useTitle("Add A Toy");
+
   const {
     register,
     handleSubmit,

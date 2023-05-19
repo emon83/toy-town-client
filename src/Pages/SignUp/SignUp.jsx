@@ -6,9 +6,12 @@ import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProviders';
 import Swal from 'sweetalert2';
 import { updateProfile } from 'firebase/auth';
+import useTitle from '../../hooks/useTitle';
 
 const SignUp = () => {
     const { createUser, googleSignIn} = useContext(AuthContext);
+    useTitle("SignUp");
+    
     const {
       register,
       handleSubmit,

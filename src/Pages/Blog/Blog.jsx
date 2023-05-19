@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
+import useTitle from "../../hooks/useTitle";
 import "./Blog.css";
 
 const Blog = () => {
+  useTitle("Blog");
   return (
     <div className="bg-cyan-50 pt-4 pb-20">
       <div className="blog__section">
