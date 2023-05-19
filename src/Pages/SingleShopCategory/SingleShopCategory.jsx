@@ -12,12 +12,12 @@ const SingleShopCategory = () => {
     console.log(data[0]);
     const {availableQuantity, category,detailsDescription, price, rating, toyImage, toyName, sellerName, email } = data[0];
     return (
-        <div className="">
-           <div className="lg:flex gap-10 my-container">
-            <div>
+        <div>
+           <div className="lg:flex gap-10 my-container lg:w-[1340px]">
+            <div className="lg:w-1/2">
                 <img className="" src={toyImage} alt="" />
             </div>
-            <div>
+            <div className="lg:w-1/2">
                 <h2 className="secondary-font text-4xl font-bold">{toyName}</h2>
                 <p className="text-gray-600 font-light mt-6 mb-4">{detailsDescription}</p>
                 <div className="flex items-center gap-1">
