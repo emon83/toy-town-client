@@ -2,7 +2,7 @@ const CateGoryToyDetails = ({ scienceToys }) => {
   console.log(scienceToys);
   return (
     <div>
-      {scienceToys.map((toy) => (
+      {scienceToys && scienceToys.map((toy) => (
         <div key={toy._id}>
           <input type="checkbox" id="my-modal-5" className="modal-toggle" />
           <div className="modal">
