@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 import { useForm } from "react-hook-form";
 import logo1 from '../../assets/logos/google.png'
@@ -8,6 +8,10 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate(); 
+
+    const from = location.state?.from?.pathname || '/';
     const {
         register,
         handleSubmit,
@@ -25,7 +29,7 @@ const Login = () => {
                     title: 'Yep...',
                     text: 'User login successfully!',
                   })
-                //navigate(from, {replace: true});
+                navigate(from, {replace: true});
             })
             .catch(error => console.log(error))
             //console.log(data);

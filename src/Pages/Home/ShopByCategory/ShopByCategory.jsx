@@ -49,7 +49,8 @@ const ShopByCategory = () => {
                   <h4>{toy.toyName}</h4>
                   <p>${toy.price}</p>
                   <p>{toy.rating}</p>
-                  <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6">View Details</button>
+                  <label htmlFor="my-modal-5" className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
+                  View Details</label>
                 </div>
               ))}
             </div>
