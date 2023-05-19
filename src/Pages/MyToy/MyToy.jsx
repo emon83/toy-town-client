@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import UpdateToy from "../UpdateToy/UpdateToy";
+import Swal from "sweetalert2";
 
 const MyToy = () => {
   const { user } = useContext(AuthContext);
@@ -34,8 +35,16 @@ const MyToy = () => {
   }; */
 
   const handleDelete = (id) => {
-    const proceed = confirm("Are you sure you want to delete");
-    if (proceed) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
       fetch(`http://localhost:5000/myToy/${id}`, {
         method: "DELETE",
       })
@@ -43,12 +52,18 @@ const MyToy = () => {
         .then((data) => {
           console.log(data);
           if (data.deletedCount > 0) {
-            alert("delete toy successfully");
+            Swal.fire(
+              'Deleted!',
+              'Your coffee has been deleted.',
+              'success'
+            )
             const remaining = toysData.filter((toy) => toy._id !== id);
             setToysData(remaining);
           }
-        });
-    }
+        })
+      }
+    });
+
   };
 
   return (

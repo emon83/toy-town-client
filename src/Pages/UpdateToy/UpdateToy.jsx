@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 const UpdateToy = ({ toy, control, setControl}) => {
   const {
     register,
@@ -6,7 +7,7 @@ const UpdateToy = ({ toy, control, setControl}) => {
     formState: { errors },
   } = useForm();
   console.log(toy);
-  
+
   const onSubmit = (data) => {
     fetch(`http://localhost:5000/myToy/${toy._id}`, {
         method: "PUT",
@@ -16,9 +17,14 @@ const UpdateToy = ({ toy, control, setControl}) => {
         .then((res) => res.json())
         .then((result) => {
           if (result.modifiedCount > 0) {
-            setControl(!control);
-            alert('updated toy')
-          }
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Coffee updated successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+                  setControl(!control);
+            }
           console.log(result);
         });  
   };
@@ -27,8 +33,7 @@ const UpdateToy = ({ toy, control, setControl}) => {
     <div>
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box w-11/12 max-w-5xl relative">
-        <label htmlFor="my-modal-5" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <div className="modal-box w-11/12 max-w-5xl">
           <h3 className="font-bold text-lg text-center">Update toy info!</h3>
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}
@@ -46,8 +51,8 @@ const UpdateToy = ({ toy, control, setControl}) => {
             {/* errors will return when field validation fails  */}
             {errors.exampleRequired && <span>This field is required</span>}
 
-          <div className="text-center">
-          <input  className="btn bg-pink-500 hover:bg-pink-600 border-none btn-sm rounded-3xl w-20 text-center"  type="submit" />
+          <div className="modal-action text-center">
+          <label htmlFor="my-modal-5"  className="btn bg-pink-500 hover:bg-pink-600 border-none btn-sm rounded-3xl w-20 text-center text-white"  type="submit">Submit</label>
           </div>
           </form>
         </div>

@@ -3,11 +3,16 @@ import "./ShopByCategory.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { Link } from "react-router-dom";
-//import CateGoryToyDetails from "../../CategoryToyDetails/CateGoryToyDetails";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const ShopByCategory = () => {
   const [categoryData, setCategoryData] = useState([]);
   const [activeTab, setActiveTab] = useState("scienceSubCategory");
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
 
   useEffect(() => {
@@ -41,7 +46,7 @@ const ShopByCategory = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {categoryData &&
               categoryData.map((toy) => (
-                <div key={toy._id} className="p-6 text-center">
+                <div key={toy._id} className="p-6 text-center" data-aos="fade-up">
                   <img src={toy.toyImage} alt="" />
                   <h4>{toy.toyName}</h4>
                   <p>${toy.price}</p>
@@ -56,7 +61,7 @@ const ShopByCategory = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {categoryData && categoryData.map((toy) => (
-                <div key={toy._id} className="p-6 text-center">
+                <div key={toy._id} className="p-6 text-center" data-aos="fade-up">
                 <img src={toy.toyImage} alt="" />
                 <h4>{toy.toyName}</h4>
                 <p>${toy.price}</p>
@@ -71,7 +76,7 @@ const ShopByCategory = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {categoryData && categoryData.map((toy) => (
-              <div key={toy._id} className="p-6 text-center">
+              <div key={toy._id} className="p-6 text-center" data-aos="fade-up">
               <img src={toy.toyImage} alt="" />
               <h4>{toy.toyName}</h4>
               <p>${toy.price}</p>

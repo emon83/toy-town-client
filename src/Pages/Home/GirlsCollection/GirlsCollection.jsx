@@ -1,9 +1,15 @@
 import "./GirlsCollection.css";
 import img from "../../../assets/girl_section/girl_section2.png";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const GirlsCollection = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
-    <div className="lg:flex items-center w-full mt-32">
+    <div className="lg:flex items-center w-full mt-32" data-aos="zoom-in">
       <div className="side-one w-1/2">
         <div className="text-center">
           <h5 className="text-2xl secondary-font text-cyan-400 mt-20 font-bold">BACK TO SCHOOL</h5>
