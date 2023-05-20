@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         {
             path: '/categoryToyDetails/:id',
             element: <PrivateRoute><SingleShopCategory/></PrivateRoute>,
-            loader: ({params})=> fetch(`http://localhost:5000/allCategoryProducts/${params.id}`)
+            loader: ({params})=> fetch(`https://toy-town-server-ashen.vercel.app/allCategoryProducts/${params.id}`)
         },
         {
             path: '/allToys',
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         {
             path: '/toyDetails/:id',
             element: <PrivateRoute><ToyDetails/></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/toyDetails/${params.id}`)
+            loader: ({params}) => fetch(`https://toy-town-server-ashen.vercel.app/toyDetails/${params.id}`)
         },
         {
             path: '/blog',
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
         {
             path: '/myToy/:id',
             element: <PrivateRoute><UpdateToy/></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/toyDetails/${params.id}`)
+            loader: ({params}) => fetch(`https://toy-town-server-ashen.vercel.app/toyDetails/${params.id}`)
         },
         
         {

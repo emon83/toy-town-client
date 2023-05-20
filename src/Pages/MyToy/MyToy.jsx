@@ -13,7 +13,7 @@ const MyToy = () => {
   useTitle("My Toys");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myToys/${user?.email}`)
+    fetch(`https://toy-town-server-ashen.vercel.app/myToys/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         const sortedProducts = data.sort((a, b) => {
@@ -30,7 +30,7 @@ const MyToy = () => {
   };
 
  /*  const handleToyUpdate = (id, toysData) => {
-    fetch(`http://localhost:5000/myToy/${id}`, {
+    fetch(`https://toy-town-server-ashen.vercel.app/myToy/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(toysData),
@@ -56,7 +56,7 @@ const MyToy = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-      fetch(`http://localhost:5000/myToy/${id}`, {
+      fetch(`https://toy-town-server-ashen.vercel.app/myToy/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

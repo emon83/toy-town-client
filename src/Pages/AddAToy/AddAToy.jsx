@@ -15,7 +15,7 @@ const AddAToy = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/postToys", {
+    fetch("https://toy-town-server-ashen.vercel.app/postToys", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -32,10 +32,9 @@ const AddAToy = () => {
     //console.log(data);
   };
   return (
-    <div className="my-container">
+    <div className="my-container mb-20">
         <h2 className="text-5xl primary-font text-center">Add A Toy Section</h2>
         <p className="text-lg secondary-font my-6 text-gray-600 text-center italic">Welcome to Add-A-Toy, your one-stop destination for a world <br /> of play and wonder. Explore our vast collection of toys</p>
-        <p></p>
       <div className="from-container">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex items-center gap-2 lg:gap-8">

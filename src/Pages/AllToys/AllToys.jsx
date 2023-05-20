@@ -6,6 +6,7 @@ const AllToys = () => {
   const [allToys, setAllToys] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [showAll, setShowAll] = useState(false);
+   const [ isActive, setIsActive] = useState(false)
   useTitle("All Toys");
 
   const handleShowAll = ()=> {
@@ -13,7 +14,7 @@ const AllToys = () => {
 }
 
   useEffect(() => {
-    fetch("http://localhost:5000/allToys")
+    fetch("https://toy-town-server-ashen.vercel.app/allToys")
       .then((res) => res.json())
       .then((data) => {
         setAllToys(data);
@@ -21,14 +22,18 @@ const AllToys = () => {
   }, []);
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/allToysByText/${searchText}`)
+    fetch(`https://toy-town-server-ashen.vercel.app/allToysByText/${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setAllToys(data);
       });
   };
-  //console.log(allToys);
+   useEffect(() =>{
+    if (allToys.length > 20) {
+      setIsActive(true);
+     }
+   }, [allToys])
   return (
     <div className="my-container mb-10">
       <h2 className="text-5xl primary-font text-center mb-8">All Toys Page</h2>
@@ -40,7 +45,7 @@ const AllToys = () => {
             placeholder="search by toy name..."
             className="input input-bordered input-md"
           />
-          <span onClick={handleSearch} className="btn btn-outline -mt-2">Search</span>
+          <span onClick={handleSearch} className="btn bg-pink-500 hover:bg-pink-600 border-none rounded-3xl text-center -mt-2">Search</span>
         </label>
       </div>
       <div className="overflow-x-auto w-full">
@@ -83,7 +88,9 @@ const AllToys = () => {
       {
             !showAll && (
                 <span onClick={handleShowAll}>
-                <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm  px-4 ">See More</button>
+                <div className={isActive ? 'block' : 'hidden'}>
+                <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm  px-4">See More</button>
+                </div>
                 </span>
             )
         }

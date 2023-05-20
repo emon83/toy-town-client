@@ -18,7 +18,7 @@ const ShopByCategory = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/${activeTab}`)
+    fetch(`https://toy-town-server-ashen.vercel.app/${activeTab}`)
       .then((res) => res.json())
       .then((data) => setCategoryData(data));
   }, [activeTab]);
