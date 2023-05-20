@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./ShopByCategory.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { Link } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { Rating } from '@smastrom/react-rating'
-import '@smastrom/react-rating/style.css'
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
+import { AuthContext } from "../../../providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const ShopByCategory = () => {
+  const { user } = useContext(AuthContext);
   const [categoryData, setCategoryData] = useState([]);
   const [activeTab, setActiveTab] = useState("scienceSubCategory");
 
@@ -16,16 +19,22 @@ const ShopByCategory = () => {
     Aos.init();
   }, []);
 
-
   useEffect(() => {
     fetch(`https://toy-town-server-ashen.vercel.app/${activeTab}`)
       .then((res) => res.json())
       .then((data) => setCategoryData(data));
   }, [activeTab]);
 
-
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
+  };
+
+  const handleMessage = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Error...",
+      text: "You have to log in first to view details!",
+    });
   };
   return (
     <div className="mt-28 my-container">
@@ -38,65 +47,139 @@ const ShopByCategory = () => {
       </div>
       <div className="mt-10">
         <Tabs>
-          <TabList className="mx-auto text-center flex items-center justify-center gap-2">
-            <Tab onClick={() => handleTabClick("scienceSubCategory")} className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6">Science Toys</Tab>
-            <Tab onClick={() => handleTabClick("languageSubCategory")} className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6">Language Toys</Tab>
-            <Tab onClick={() => handleTabClick("engineeringSubCategory")} className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6">Engineering Toys</Tab>
+          <TabList className="mx-auto text-center sm:flex items-center justify-center gap-2">
+            <Tab
+              onClick={() => handleTabClick("scienceSubCategory")}
+              className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6 block sm:w-44 pt-2"
+            >
+              Science Toys
+            </Tab>
+            <Tab
+              onClick={() => handleTabClick("languageSubCategory")}
+              className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6 block sm:w-44 pt-2	"
+            >
+              Language Toys
+            </Tab>
+            <Tab
+              onClick={() => handleTabClick("engineeringSubCategory")}
+              className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6 block sm:w-44 pt-2"
+            >
+              Engineering Toys
+            </Tab>
           </TabList>
 
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {categoryData &&
-              categoryData.map((toy) => (
-                <div key={toy._id} className="p-6 text-center" data-aos="fade-up">
-                  <img src={toy.toyImage} alt="" />
-                  <h4 className="text-lg font-bold mt-6 mb-2">{toy.toyName}</h4>
-                  <p className="">Price: ${toy.price}</p>
-                  <div className="flex justify-center items-center my-4">
-                <Rating style={{ maxWidth: 100 }} value={5} />
-                <p>{toy.rating}</p>
-                </div>
-                 <Link to={`categoryToyDetails/${toy._id}`}>
-                 <button  className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">View Details</button>
-                 </Link>
-                </div>
-              ))}
+                categoryData.map((toy) => (
+                  <div
+                    key={toy._id}
+                    className="p-6 text-center"
+                    data-aos="fade-up"
+                  >
+                    <img className="rounded-md" src={toy.toyImage} alt="" />
+                    <h4 className="text-lg font-bold mt-6 mb-2">
+                      {toy.toyName}
+                    </h4>
+                    <p className="">Price: ${toy.price}</p>
+                    <div className="flex justify-center items-center my-4">
+                      <Rating style={{ maxWidth: 100 }} value={5} />
+                      <p>{toy.rating}</p>
+                    </div>
+                    {user ? (
+                      <Link to={`categoryToyDetails/${toy._id}`}>
+                        <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
+                          View Details
+                        </button>
+                      </Link>
+                    ) : (
+                      <div>
+                        <button
+                          onClick={handleMessage}
+                          className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4"
+                        >
+                          View Details
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
             </div>
           </TabPanel>
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {categoryData && categoryData.map((toy) => (
-                <div key={toy._id} className="p-6 text-center" data-aos="fade-up">
-                <img src={toy.toyImage} alt="" />
-                <h4 className="text-lg font-bold mt-6 mb-2">{toy.toyName}</h4>
-                <p className="">Price: ${toy.price}</p>
-                <div className="flex justify-center items-center my-4">
-                <Rating style={{ maxWidth: 100 }} value={5} />
-                <p>{toy.rating}</p>
-                </div>
-                <Link to={`categoryToyDetails/${toy._id}`}>
-                 <button  className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">View Details</button>
-                 </Link>
-              </div>
-              ))}
+              {categoryData &&
+                categoryData.map((toy) => (
+                  <div
+                    key={toy._id}
+                    className="p-6 text-center"
+                    data-aos="fade-up"
+                  >
+                    <img className="rounded-md" src={toy.toyImage} alt="" />
+                    <h4 className="text-lg font-bold mt-6 mb-2">
+                      {toy.toyName}
+                    </h4>
+                    <p className="">Price: ${toy.price}</p>
+                    <div className="flex justify-center items-center my-4">
+                      <Rating style={{ maxWidth: 100 }} value={5} />
+                      <p>{toy.rating}</p>
+                    </div>
+                    {user ? (
+                      <Link to={`categoryToyDetails/${toy._id}`}>
+                        <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
+                          View Details
+                        </button>
+                      </Link>
+                    ) : (
+                      <div>
+                        <button
+                          onClick={handleMessage}
+                          className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4"
+                        >
+                          View Details
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
             </div>
           </TabPanel>
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {categoryData && categoryData.map((toy) => (
-              <div key={toy._id} className="p-6 text-center" data-aos="fade-up">
-              <img src={toy.toyImage} alt="" />
-              <h4 className="text-lg font-bold mt-6 mb-2">{toy.toyName}</h4>
-              <p className="">Price: ${toy.price}</p>
-              <div className="flex justify-center items-center my-4">
-                <Rating style={{ maxWidth: 100 }} value={5} />
-                <p>{toy.rating}</p>
-                </div>
-              <Link to={`categoryToyDetails/${toy._id}`}>
-                 <button  className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">View Details</button>
-                 </Link>
-            </div>
-            ))}
+              {categoryData &&
+                categoryData.map((toy) => (
+                  <div
+                    key={toy._id}
+                    className="p-6 text-center"
+                    data-aos="fade-up"
+                  >
+                    <img className="rounded-md" src={toy.toyImage} alt="" />
+                    <h4 className="text-lg font-bold mt-6 mb-2">
+                      {toy.toyName}
+                    </h4>
+                    <p className="">Price: ${toy.price}</p>
+                    <div className="flex justify-center items-center my-4">
+                      <Rating style={{ maxWidth: 100 }} value={5} />
+                      <p>{toy.rating}</p>
+                    </div>
+                    {user ? (
+                      <Link to={`categoryToyDetails/${toy._id}`}>
+                        <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
+                          View Details
+                        </button>
+                      </Link>
+                    ) : (
+                      <div>
+                        <button
+                          onClick={handleMessage}
+                          className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4"
+                        >
+                          View Details
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
             </div>
           </TabPanel>
         </Tabs>

@@ -1,6 +1,7 @@
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
+import './GallerySection.css'
 
 const GallerySection = () => {
   const [galleryData, setGalleryData] = useState([]);
@@ -8,11 +9,11 @@ const GallerySection = () => {
   useEffect(() => {
     Aos.init();
   }, []);
-  useEffect(()=> {
-    fetch('https://toy-town-server-ashen.vercel.app/galleryData')
-    .then(res => res.json())
-    .then(data => setGalleryData(data))
-  }, [])
+  useEffect(() => {
+    fetch("https://toy-town-server-ashen.vercel.app/galleryData")
+      .then((res) => res.json())
+      .then((data) => setGalleryData(data));
+  }, []);
   return (
     <div className="mt-28 my-container">
       <div className="text-center">
@@ -22,21 +23,22 @@ const GallerySection = () => {
           Check back often and enjoy.
         </h6>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-4">
-        
-        {
-          galleryData.map(data=> (
-            <div key={data._id} className="text-center p-4 lg:p-2" data-aos="fade-up">
-          <img
-            className="w-full lg:w-[470px] lg:h-[280px]"
-            src={data.image}
-            alt=""
-          />
-          <h4 className="secondary-text text-lg font-semibold mt-4">{data.title}</h4>
-          <p className="text-cyan-500">${data.price}</p>
-        </div>
-          ))
-        }
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 gap-4">
+        {galleryData.map((data) => (
+          <div key={data._id} className="text-center p-4 gallery-card" data-aos="fade-up">
+            <figure>
+              <img
+                className="w-full lg:w-[400px] lg:h-[400px] rounded-md"
+                src={data.image}
+                alt=""
+              />
+            </figure>
+            <h4 className="secondary-text text-lg font-semibold mt-4">
+              {data.title}
+            </h4>
+            <p className="text-cyan-500">${data.price}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

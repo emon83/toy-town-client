@@ -1,0 +1,22 @@
+.gallery-card figure {
+  background: linear-gradient(40deg, #8490ff 40%, #62bdfc 100%);
+  width: 400px;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 3%;
+}
+
+.gallery-card figure:hover img {
+  opacity: 0.3;
+  transition: all 0.3s ease-in-out;
+}
+
+@media only screen and (min-width: 320px) {
+  .gallery-card figure {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+  }
+}

@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             element: <AllToys/>,
         },
         {
-            path: '/toyDetails/:id',
+            path: '/toy/:id',
             element: <PrivateRoute><ToyDetails/></PrivateRoute>,
             loader: ({params}) => fetch(`https://toy-town-server-ashen.vercel.app/toyDetails/${params.id}`)
         },

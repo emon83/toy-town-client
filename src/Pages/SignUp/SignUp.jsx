@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import './SignUp.css'
 import { useForm } from "react-hook-form";
 import logo1 from '../../assets/logos/google.png'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProviders';
 import Swal from 'sweetalert2';
 import { updateProfile } from 'firebase/auth';
@@ -10,6 +10,7 @@ import useTitle from '../../hooks/useTitle';
 
 const SignUp = () => {
     const { createUser, googleSignIn} = useContext(AuthContext);
+    const [error, setError] = useState('');
     useTitle("SignUp");
     
     const {
@@ -22,6 +23,8 @@ const SignUp = () => {
       const email = data.email;
       const password = data.password;
       const photoURL = data.photoUrl;
+
+      setError('');
       createUser(email, password)
           .then(result => {
               const loggedUser = result.user;
@@ -33,11 +36,15 @@ const SignUp = () => {
                 text: 'User signUp successfully!',
               })
           })
-          .catch(error => console.log(error))
+          .catch(error => {
+            setError(error.message);
+            console.log(error)
+          })
           console.log(data);
     };
 
     const updateUserData = (user, name, photoURl) =>{
+        setError('');
         updateProfile(user, {
           displayName:name, 
           photoURL: photoURl,
@@ -46,12 +53,13 @@ const SignUp = () => {
           console.log("user name updated successfully");
         })
         .catch((error) => {
-          //setError(error.message);
+          setError(error.message);
           console.log(error);
         })
       }
 
     const handleGoogleSignIn = () => {
+        setError('');
         googleSignIn()
         .then(result => {
           console.log(result.user);
@@ -63,6 +71,7 @@ const SignUp = () => {
           //navigate(from, { replace: true });
         })
         .catch(error => {
+            setError(error.message);
             console.log(error)
         })
       }
@@ -90,6 +99,7 @@ const SignUp = () => {
           <input type="submit" value="sign up" className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl" />
           <p><small>Already have an Account Please <Link to='/login' className="text-pink-600 font-bold">Login</Link></small></p>
         </form>
+        <p className="text-red-600">{error}</p>
         <div className="divider mt-10">OR</div>
         <div>
         <div onClick={handleGoogleSignIn} className="flex items-center social-login my-4">

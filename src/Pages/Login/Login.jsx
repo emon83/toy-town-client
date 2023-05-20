@@ -2,13 +2,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 import { useForm } from "react-hook-form";
 import logo1 from '../../assets/logos/google.png'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProviders';
 import Swal from 'sweetalert2';
 import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
+    const [error, setError] = useState('');
     const location = useLocation();
     const navigate = useNavigate(); 
     useTitle("Login");
@@ -22,6 +23,7 @@ const Login = () => {
       const onSubmit = (data) => {
         const email = data.email;
         const password = data.password;
+        setError('')
         signIn(email, password)
             .then(result => {
                 const user = result.user;
@@ -33,11 +35,15 @@ const Login = () => {
                   })
                 navigate(from, {replace: true});
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+              setError(error.message);
+              console.log(error)
+            })
             //console.log(data);
       };
 
       const handleGoogleSignIn = () => {
+        setError('')
         googleSignIn()
         .then(result => {
           console.log(result.user);
@@ -48,7 +54,10 @@ const Login = () => {
           })
           //navigate(from, { replace: true });
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+          setError(error.message);
+          console.log(error)
+        })
       }
     return (
         <div className="my-4 login-card mx-auto">
@@ -71,6 +80,7 @@ const Login = () => {
         />
         <p><small>New to Toy Town Please <Link to='/signUp' className="text-pink-600 font-bold">Sign Up</Link></small></p>
       </form>
+      {error && <p className="text-red-500">{error}</p>}
       <div className="divider mt-10">OR</div>
       <div>
         <div onClick={handleGoogleSignIn} className="flex items-center social-login my-4">
