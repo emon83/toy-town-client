@@ -1,24 +1,33 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import UpdateToy from "../UpdateToy/UpdateToy";
 import Swal from "sweetalert2";
 import useTitle from "../../hooks/useTitle";
+import { Link } from "react-router-dom";
 
 const MyToy = () => {
   const { user } = useContext(AuthContext);
   const [toysData, setToysData] = useState();
   const [control, setControl] = useState(false);
+  const [sortOrder, setSortOrder] = useState(true);
   useTitle("My Toys");
 
   useEffect(() => {
     fetch(`http://localhost:5000/myToys/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        setToysData(data);
+        const sortedProducts = data.sort((a, b) => {
+          // Sort by price based on sort order
+          return sortOrder === 'asc' ? b.price - a.price : a.price - b.price;
+        });
+        setToysData(sortedProducts);
       });
-  }, [user, control]);
-  console.log(toysData);
+  }, [user, control, sortOrder]);
+  //console.log(toysData);
+
+  const handleSortOrderChange = (event) => {
+    setSortOrder(event.target.value);
+  };
 
  /*  const handleToyUpdate = (id, toysData) => {
     fetch(`http://localhost:5000/myToy/${id}`, {
@@ -56,7 +65,7 @@ const MyToy = () => {
           if (data.deletedCount > 0) {
             Swal.fire(
               'Deleted!',
-              'Your coffee has been deleted.',
+              'Your toy has been deleted.',
               'success'
             )
             const remaining = toysData.filter((toy) => toy._id !== id);
@@ -69,8 +78,15 @@ const MyToy = () => {
   };
 
   return (
-    <div className="my-container">
+    <div className="my-container mb-20">
       <h2 className="text-5xl primary-font text-center mb-8">My Toys Page</h2>
+      <div className="flex items-center justify-center gap-2 mb-4">
+        <p className="font-bold">Sort By Price:</p>
+      <select value={sortOrder} onChange={handleSortOrderChange}>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+      </div>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           {/* head */}
@@ -94,13 +110,14 @@ const MyToy = () => {
                   <th>{toy.sellerName}</th>
                   <th>{toy.toyName}</th>
                   <th>{toy.subCategory}</th>
-                  <th>{toy.price}</th>
+                  <th>$ {toy.price}</th>
                   <th>{toy.quantity}</th>
                   <th>
                     
-                    <label htmlFor="my-modal-5" className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
-                Edit</label>
-                <UpdateToy toy={toy} control={control} setControl={setControl}/>
+                    <Link to={`${toy._id}`}>
+                    <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
+                Edit</button>
+                    </Link>
                   </th>
                   <th>
                     <button onClick={() => handleDelete(toy._id)}>

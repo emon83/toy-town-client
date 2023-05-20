@@ -30,7 +30,7 @@ const AllToys = () => {
   };
   //console.log(allToys);
   return (
-    <div className="my-container">
+    <div className="my-container mb-10">
       <h2 className="text-5xl primary-font text-center mb-8">All Toys Page</h2>
       <div className="form-control w-1/2 mx-auto">
         <label className="input-group input-group-md flex items-center">
@@ -65,7 +65,7 @@ const AllToys = () => {
                   <th>{toy.sellerName}</th>
                   <th>{toy.toyName}</th>
                   <th>{toy.subCategory}</th>
-                  <th>{toy.price}</th>
+                  <th>${toy.price}</th>
                   <th>{toy.quantity}</th>
                   <th>
                     <Link to={`/toyDetails/${toy._id}`}>
