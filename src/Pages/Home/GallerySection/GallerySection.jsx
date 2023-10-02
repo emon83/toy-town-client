@@ -1,19 +1,65 @@
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
-import './GallerySection.css'
+import { useEffect } from "react";
+import "./GallerySection.css";
+
+import img1 from "../../../assets/gallery-img/gallery-01.jpg";
+import img2 from "../../../assets/gallery-img/gallery-02.jpg";
+import img3 from "../../../assets/gallery-img/gallery-03.jpg";
+import img4 from "../../../assets/gallery-img/gallery-04.jpg";
+import img5 from "../../../assets/gallery-img/gallery-05.jpg";
+import img6 from "../../../assets/gallery-img/gallery-06.jpg";
+import img7 from "../../../assets/gallery-img/gallery-07.jpg";
+import img8 from "../../../assets/gallery-img/gallery-08.jpg";
+import img9 from "../../../assets/gallery-img/gallery-09.jpg";
+import img10 from "../../../assets/gallery-img/gallery-10.jpg";
+import img11 from "../../../assets/gallery-img/gallery-11.jpg";
+import img12 from "../../../assets/gallery-img/gallery-12.jpg";
 
 const GallerySection = () => {
-  const [galleryData, setGalleryData] = useState([]);
+  const galleryImgData = [
+    {
+      img: img1,
+    },
+    {
+      img: img2,
+    },
+    {
+      img: img3,
+    },
+    {
+      img: img4,
+    },
+    {
+      img: img5,
+    },
+    {
+      img: img6,
+    },
+    {
+      img: img7,
+    },
+    {
+      img: img8,
+    },
+    {
+      img: img9,
+    },
+    {
+      img: img10,
+    },
+    {
+      img: img11,
+    },
+    {
+      img: img12,
+    },
+  ];
 
   useEffect(() => {
     Aos.init();
   }, []);
-  useEffect(() => {
-    fetch("https://toy-town-server-ashen.vercel.app/galleryData")
-      .then((res) => res.json())
-      .then((data) => setGalleryData(data));
-  }, []);
+
   return (
     <div className="mt-28 my-container">
       <div className="text-center">
@@ -23,20 +69,14 @@ const GallerySection = () => {
           Check back often and enjoy.
         </h6>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 gap-4">
-        {galleryData.map((data) => (
-          <div key={data._id} className="text-center p-4 gallery-card" data-aos="fade-up">
-            <figure>
-              <img
-                className="w-full lg:w-[400px] lg:h-[400px] rounded-md"
-                src={data.image}
-                alt=""
-              />
-            </figure>
-            <h4 className="secondary-text text-lg font-semibold mt-4">
-              {data.title}
-            </h4>
-            <p className="text-cyan-500">${data.price}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 mt-10 gap-4">
+        {galleryImgData?.map((imgData, index) => (
+          <div className="group" key={index} data-aos="fade-up">
+            <img
+              className="group-hover:scale-105 transition-transform rounded-sm"
+              src={imgData.img}
+              alt=""
+            />
           </div>
         ))}
       </div>

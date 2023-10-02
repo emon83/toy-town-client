@@ -25,7 +25,9 @@
     font-family: 'Work Sans', sans-serif;
 }
 
-  /* 
-  Title font: font-family: 'Luckiest Guy', cursive;
-  Secondary font : font-family: 'Work Sans', sans-serif;
-  */
+.btn-color{
+  @apply bg-[#00b4d8] hover:bg-[#48cae4]
+}
+.text-color{
+  @apply text-[#00b4d8]
+}

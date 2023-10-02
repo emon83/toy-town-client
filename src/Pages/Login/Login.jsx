@@ -1,95 +1,117 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import './Login.css'
+import Lottie from "react-lottie";
+import animation from "../../assets/animation_login.json";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "./Login.css";
 import { useForm } from "react-hook-form";
-import logo1 from '../../assets/logos/google.png'
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../providers/AuthProviders';
-import Swal from 'sweetalert2';
-import useTitle from '../../hooks/useTitle';
+import logo from "../../assets/logos/google.png";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import useTitle from "../../hooks/useTitle";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-    const { signIn, googleSignIn } = useContext(AuthContext);
-    const [error, setError] = useState('');
-    const location = useLocation();
-    const navigate = useNavigate(); 
-    useTitle("Login");
+  const { signIn, googleSignIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  useTitle("Login");
+  const from = location.state?.from?.pathname || "/";
 
-    const from = location.state?.from?.pathname || '/';
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm();
-      const onSubmit = (data) => {
-        const email = data.email;
-        const password = data.password;
-        setError('')
-        signIn(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Yep...',
-                    text: 'User login successfully!',
-                  })
-                navigate(from, {replace: true});
-            })
-            .catch(error => {
-              setError(error.message);
-              console.log(error)
-            })
-            //console.log(data);
-      };
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
-      const handleGoogleSignIn = () => {
-        setError('')
-        googleSignIn()
-        .then(result => {
-          console.log(result.user);
-          Swal.fire({
-            icon: 'success',
-            title: 'Yep...',
-            text: 'User login successfully!',
-          })
-          //navigate(from, { replace: true });
-        })
-        .catch(error => {
-          setError(error.message);
-          console.log(error)
-        })
-      }
-    return (
-        <div className="my-4 login-card mx-auto">
-      <h2 className="text-2xl font-bold mb-8">Login Please</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* register your input into the hook by invoking the "register" function */}
-        <label>Username or Email</label>
-        <input defaultValue="" {...register("email")} />
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-        {/* include validation with required or other standard HTML validation rules */}
-        <label>Password</label>
-        <input {...register("password", { required: true })} />
+  const onSubmit = (data) => {
+    const email = data.email;
+    const password = data.password;
+    setError("");
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("User login successful");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error);
+      });
+    //console.log(data);
+  };
 
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <span>This field is required</span>}
-        <input
-          type="submit"
-          value="Login"
-          className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
-        />
-        <p><small>New to Toy Town Please <Link to='/signUp' className="text-pink-600 font-bold">Sign Up</Link></small></p>
-      </form>
-      {error && <p className="text-red-500">{error}</p>}
-      <div className="divider mt-10">OR</div>
-      <div>
-        <div onClick={handleGoogleSignIn} className="flex items-center social-login my-4">
-            <img className="w-8 h-8 ml-4" src={logo1} alt="" />
-            <p className="mx-auto">Continue with Google</p>
+  const handleGoogleSignIn = () => {
+    setError("");
+    googleSignIn()
+      .then((result) => {
+        console.log(result.user);
+        toast.success("User login successful");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error);
+      });
+  };
+  return (
+    <div className="w-full md:flex items-center justify-center mx-auto bg-[#caf0f8] md:h-[100vh]">
+      <Toaster/>
+      <div className="md:w-1/2 bg-gray-100 login-card mx-auto">
+        <h2 className="text-xl sm:text-2xl font-bold mb-2 text-center">Login Please</h2>
+        <p className="text-sm text-gray-400 text-center mb-6">
+            Sign in to access your account
+          </p>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label className="text-xs sm:text-sm">Username or Email</label>
+          <input defaultValue="" {...register("email")} />
+          {errors.email && <span className="text-xs">This field is required</span>}
+
+          <label className="text-xs sm:text-sm">Password</label>
+          <input {...register("password", { required: true })} />
+          {errors.password && <span className="text-xs">This field is required</span>}
+          <input
+            type="submit"
+            value="Login"
+            className="btn btn-sm sm:btn-md btn-color border-none btn-block rounded-3xl"
+          />
+        </form>
+        {error && <p className="text-xs text-color font-semibold">{error}</p>}
+        <p className="px-3 text-sm dark:text-gray-400 text-center mt-3">
+            Login with social accounts
+          </p>
+        <div>
+          <div
+            onClick={handleGoogleSignIn}
+            className="flex items-center justify-center gap-4 social-login my-4"
+          >
+            <img className="w-6 ml-4" src={logo} alt="Google logo" />
+            <p className="text-sm sm:text-base">Continue with Google</p>
+          </div>
+          <p className="text-center">
+            <small className="text-xs sm:text-sm">
+              New to Toy Town Please{" "}
+              <Link to="/signUp" className="text-color font-bold">
+                Sign Up
+              </Link>
+            </small>
+          </p>
         </div>
       </div>
+      <div className="md:w-1/2">
+        <Lottie options={defaultOptions} height={475} width={370} />
+      </div>
     </div>
-    );
+  );
 };
 
 export default Login;

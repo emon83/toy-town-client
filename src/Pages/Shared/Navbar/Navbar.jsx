@@ -1,19 +1,32 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logos/logo.png";
+import { BsCloudSunFill, BsFillCloudMoonFill } from "react-icons/bs";
+import UserModal from "./UserModal";
 import { AuthContext } from "../../../providers/AuthProviders";
+import { useTheme } from "../../../providers/ThemeProvider";
+import { AiOutlineMenu } from "react-icons/ai";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const { theme, themeSwitchHandler } = useTheme(); // for using light and dark themes
+
+  useEffect(() => {
+    document.querySelector("html").setAttribute("data-theme", theme.mode);
+  }, [theme]);
 
   const handleLogout = () => {
     logOut()
-      .then(() => {})
+      .then(() => {
+        toast.success("User logout successful");
+      })
       .catch((error) => console.log(error));
   };
   return (
-    <div className="my-container py-5 px-4  mx-auto">
+    <div className="px-4 mx-auto h-24">
+      <Toaster/>
       <div className="relative flex items-center justify-between">
         <Link
           to="/"
@@ -21,8 +34,8 @@ const Navbar = () => {
           title="ToyTown"
           className="inline-flex items-center"
         >
-          <div className="flex items-center justify-center w-40 h-28">
-            <img className="w-40" src={logo} alt="" />
+          <div className="flex items-center justify-center w-40 h-24">
+            <img className="w-32" src={logo} alt="" />
           </div>
         </Link>
         <ul className="items-center hidden space-x-8 lg:flex">
@@ -56,7 +69,7 @@ const Navbar = () => {
               Blogs
             </NavLink>
           </li>
-          {user?.email ? (
+          {user && (
             <>
               <li>
                 <NavLink
@@ -83,54 +96,60 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar -mx-4">
-                  <div className="w-10 rounded-full">
-                    <img title={user?.displayName} src={user?.photoURL} />
-                  </div>
-                </label>
+                <NavLink
+                  to="/dashboard"
+                  aria-label="DashBoard"
+                  title="DashBoard"
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  DashBoard
+                </NavLink>
               </li>
+            </>
+          )}
+        </ul>
+        <ul className="items-center hidden space-x-8 lg:flex">
+          {/* For dark and light mood */}
+          <div className="-mr-4">
+            {theme.mode == "dark" ? (
+              <BsCloudSunFill
+                title="Make Light"
+                className="text-3xl cursor-pointer"
+                onClick={() => themeSwitchHandler()}
+              />
+            ) : (
+              <BsFillCloudMoonFill
+                title="Make Dark"
+                className="text-3xl cursor-pointer"
+                onClick={() => themeSwitchHandler()}
+              />
+            )}
+          </div>
+          {user ? (
+            <>
+              <UserModal handleLogout={handleLogout} />
+            </>
+          ) : (
+            <>
               <li>
-                <Link aria-label="Logout" title="Logout">
-                  <button
-                    onClick={handleLogout}
-                    className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6"
-                  >
-                    Logout
+                <Link to="/login" aria-label="Login" title="Login">
+                  <button className="btn btn-color border-none h-4 rounded-3xl btn-sm px-6">
+                    Login
                   </button>
                 </Link>
               </li>
             </>
-          ) : (
-            <li>
-              <Link to="/login" aria-label="Login" title="Login">
-                <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6">
-                  Login
-                </button>
-              </Link>
-            </li>
           )}
         </ul>
         <div className="lg:hidden">
-          <button
+        <button
             aria-label="Open Menu"
             title="Open Menu"
-            className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
             onClick={() => setIsMenuOpen(true)}
           >
-            <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
-              />
-              <path
-                fill="currentColor"
-                d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"
-              />
-              <path
-                fill="currentColor"
-                d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"
-              />
-            </svg>
+            <AiOutlineMenu className="w-5 text-gray-600" />
           </button>
           {isMenuOpen && (
             <div className="absolute z-10 top-0 left-0 w-full">
@@ -186,7 +205,7 @@ const Navbar = () => {
                         Blog
                       </Link>
                     </li>
-                    {user?.email ? (
+                    {user && (
                       <>
                         <li>
                           <Link
@@ -209,30 +228,39 @@ const Navbar = () => {
                           </Link>
                         </li>
                         <li>
-                          <label
-                            tabIndex={0}
-                            className="btn btn-ghost btn-circle avatar"
-                          >
-                            <div className="w-10 rounded-full">
-                              <img
-                                title={user?.displayName}
-                                src={user?.photoURL}
-                              />
-                            </div>
-                          </label>
-                        </li>
-                        <li>
-                          <Link
-                            aria-label="Logout"
-                            title="Logout"
-                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                          >
-                            <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6 -ml-2">
-                              Logout
-                            </button>
-                          </Link>
-                        </li>
+                        <Link
+                          to="/dashboard"
+                          aria-label="DashBoard"
+                          title="DashBoard"
+                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        >
+                          DashBoard
+                        </Link>
+                      </li>
                       </>
+                    )}
+                    <li>
+                      {/* For dark and light mood */}
+                      <div className="-mr-4">
+                        {theme.mode == "dark" ? (
+                          <BsCloudSunFill
+                            title="Make Light"
+                            className="text-3xl cursor-pointer"
+                            onClick={() => themeSwitchHandler()}
+                          />
+                        ) : (
+                          <BsFillCloudMoonFill
+                            title="Make Dark"
+                            className="text-3xl cursor-pointer"
+                            onClick={() => themeSwitchHandler()}
+                          />
+                        )}
+                      </div>
+                    </li>
+                    {user ? (
+                      <li>
+                        <UserModal handleLogout={handleLogout} />
+                      </li>
                     ) : (
                       <li>
                         <Link
@@ -241,7 +269,7 @@ const Navbar = () => {
                           title="Login"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-6 -ml-2">
+                          <button className="btn btn-color border-none h-4 rounded-3xl btn-sm px-6 -ml-2">
                             Login
                           </button>
                         </Link>

@@ -5,9 +5,11 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 const GirlsCollection = () => {
+  
   useEffect(() => {
     Aos.init();
   }, []);
+
   return (
     <div className="lg:flex items-center w-full mt-32" data-aos="zoom-in">
       <div className="side-one lg:w-1/2">

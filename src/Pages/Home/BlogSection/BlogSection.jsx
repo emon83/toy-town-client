@@ -3,12 +3,15 @@ import { AiFillClockCircle } from 'react-icons/ai';
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
-
+import img1 from '../../../assets/blog_section/bs-blog-1-640x640.jpg'
+import img2 from '../../../assets/blog_section/bs-blog-2-640x640.jpg'
+import img3 from '../../../assets/blog_section/bs-blog-3-640x640.jpg'
 
 const BlogSection = () => {
     useEffect(() => {
         Aos.init();
       }, []);
+      
     return (
         <div className='my-container my-32'>
             <div className='text-center'>
@@ -17,7 +20,7 @@ const BlogSection = () => {
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-10'>
                 <div className='mt-10' data-aos="fade-up">
-                    <img className='w-full' src="https://i.ibb.co/9cTvTzT/bs-blog-1-640x640.jpg" alt="" />
+                    <img className='w-full' src={img1} alt="" />
                     <h4 className='text-xl font-bold secondary-font mt-4 mb-2 lg:mb-6'>Why February Babies Are Extra Special</h4>
                     <div className='flex items-center gap-4'>
                     <div className='flex items-center'>
@@ -31,7 +34,7 @@ const BlogSection = () => {
                     </div>
                 </div>
                 <div className='mt-10' data-aos="fade-up">
-                    <img className='w-full' src="https://i.ibb.co/64VRTD6/bs-blog-2-640x640.jpg" alt="" />
+                    <img className='w-full' src={img2} alt="" />
                     <h4 className='text-xl font-bold secondary-font mt-4 mb-2'>The Surprising way Motherhood changed Me</h4>
                     <div className='flex items-center gap-4'>
                     <div className='flex items-center'>
@@ -45,7 +48,7 @@ const BlogSection = () => {
                     </div>
                 </div>
                 <div className='mt-10' data-aos="fade-up">
-                    <img className='w-full' src="https://i.ibb.co/qDGGRxP/bs-blog-3-640x640.jpg" alt="" />
+                    <img className='w-full' src={img3} alt="" />
                     <h4 className='text-xl font-bold secondary-font mt-4 mb-2'>How Aromatherapy Can Impact NICU Babies</h4>
                     <div className='flex items-center gap-4'>
                     <div className='flex items-center'>

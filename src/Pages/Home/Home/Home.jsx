@@ -5,15 +5,15 @@ import GirlsCollection from "../GirlsCollection/GirlsCollection";
 import ShopByCategory from "../ShopByCategory/ShopByCategory";
 
 const Home = () => {
-    return (
-        <>
-            <Banner/>
-            <GallerySection/>
-            <ShopByCategory/>
-            <GirlsCollection/>
-            <BlogSection/>
-        </>
-    );
+  return (
+    <>
+      <Banner />
+      <GallerySection />
+      <ShopByCategory />
+      <GirlsCollection />
+      <BlogSection />
+    </>
+  );
 };
 
 export default Home;

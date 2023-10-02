@@ -1,7 +1,0 @@
-.banner-bg {
-    background: linear-gradient(rgba(76, 76, 76, 0.1),rgba(0, 0, 0, 0.1)) ,  url('../../../assets/banner/hero.png');
-    height: 100vh;
-    width: 100%;
-    background-size: cover;
-}
-
