@@ -1,19 +1,19 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../providers/AuthProviders";
+import { useEffect, useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useTitle from "../../hooks/useTitle";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const MyToy = () => {
-  const { user } = useContext(AuthContext);
+  const { email } = useSelector((state) => state.userSlice);
   const [toysData, setToysData] = useState();
   const [control, setControl] = useState(false);
   const [sortOrder, setSortOrder] = useState(true);
   useTitle("My Toys");
 
   useEffect(() => {
-    fetch(`https://toy-town-server-ashen.vercel.app/myToys/${user?.email}`)
+    fetch(`https://toy-town-server-ashen.vercel.app/myToys/${email}`)
       .then((res) => res.json())
       .then((data) => {
         const sortedProducts = data.sort((a, b) => {
@@ -22,7 +22,7 @@ const MyToy = () => {
         });
         setToysData(sortedProducts);
       });
-  }, [user, control, sortOrder]);
+  }, [control, email, sortOrder]);
   //console.log(toysData);
 
   const handleSortOrderChange = (event) => {

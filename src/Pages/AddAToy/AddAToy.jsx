@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
 import './AddAToy.css'
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import useTitle from "../../hooks/useTitle";
+import { useSelector } from "react-redux";
 
 const AddAToy = () => {
-    const { user } = useContext(AuthContext);
+  const { email, name } = useSelector((state) => state.userSlice);
     useTitle("Add A Toy");
 
   const {
@@ -48,7 +47,7 @@ const AddAToy = () => {
               <input
                 className="italic"
                 placeholder="Seller Name"
-                defaultValue={user?.displayName}
+                defaultValue={name}
                 {...register("sellerName", { required: true })}
               />
             </div>
@@ -56,7 +55,7 @@ const AddAToy = () => {
           <div className="flex items-center gap-2 lg:gap-8">
             <div className="w-full">
               <label>Seller Email</label>
-              <input type="email" className="italic" value={user?.email} {...register("sellerEmail")} />
+              <input type="email" className="italic" value={email} {...register("sellerEmail")} />
             </div>
 
             <div className="w-full">

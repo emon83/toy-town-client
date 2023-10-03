@@ -4,18 +4,20 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import logo from "../../assets/logos/google.png";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../providers/AuthProviders";
 import useTitle from "../../hooks/useTitle";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, socialLoginUser } from "../../redux/features/user/userSlice";
+import { useEffect } from "react";
 
 const Login = () => {
-  const { signIn, googleSignIn } = useContext(AuthContext);
-  const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   useTitle("Login");
+  const dispatch = useDispatch();
+  const {isLoading, email, isError, error} = useSelector((state) => state.userSlice);
   const from = location.state?.from?.pathname || "/";
+
 
   const defaultOptions = {
     loop: true,
@@ -32,66 +34,58 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    if (isError && error) {
+      toast.error(error)
+    }
+  }, [isError, error]);
+
+  useEffect(() => {
+    if (!isLoading && email) {
+      navigate(from, {replace: true});
+      toast.success("User login successfully");
+    }
+  }, [isLoading, email]);
+
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
-    setError("");
-    signIn(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        toast.success("User login successful");
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        setError(error.message);
-        console.log(error);
-      });
-    //console.log(data);
-  };
-
-  const handleGoogleSignIn = () => {
-    setError("");
-    googleSignIn()
-      .then((result) => {
-        console.log(result.user);
-        toast.success("User login successful");
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        setError(error.message);
-        console.log(error);
-      });
+    dispatch(loginUser({ email, password }))
   };
   return (
     <div className="w-full md:flex items-center justify-center mx-auto bg-[#caf0f8] md:h-[100vh]">
-      <Toaster/>
+      <Toaster />
       <div className="md:w-1/2 bg-gray-100 login-card mx-auto">
-        <h2 className="text-xl sm:text-2xl font-bold mb-2 text-center">Login Please</h2>
+        <h2 className="text-xl sm:text-2xl font-bold mb-2 text-center">
+          Login Please
+        </h2>
         <p className="text-sm text-gray-400 text-center mb-6">
-            Sign in to access your account
-          </p>
+          Sign in to access your account
+        </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label className="text-xs sm:text-sm">Username or Email</label>
           <input defaultValue="" {...register("email")} />
-          {errors.email && <span className="text-xs">This field is required</span>}
+          {errors.email && (
+            <span className="text-xs">This field is required</span>
+          )}
 
           <label className="text-xs sm:text-sm">Password</label>
           <input {...register("password", { required: true })} />
-          {errors.password && <span className="text-xs">This field is required</span>}
+          {errors.password && (
+            <span className="text-xs">This field is required</span>
+          )}
           <input
             type="submit"
             value="Login"
             className="btn btn-sm sm:btn-md btn-color border-none btn-block rounded-3xl"
           />
         </form>
-        {error && <p className="text-xs text-color font-semibold">{error}</p>}
         <p className="px-3 text-sm dark:text-gray-400 text-center mt-3">
-            Login with social accounts
-          </p>
+          Login with social accounts
+        </p>
         <div>
           <div
-            onClick={handleGoogleSignIn}
+            onClick={()=> dispatch(socialLoginUser())}
             className="flex items-center justify-center gap-4 social-login my-4"
           >
             <img className="w-6 ml-4" src={logo} alt="Google logo" />

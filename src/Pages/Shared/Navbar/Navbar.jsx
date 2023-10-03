@@ -1,16 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logos/logo.png";
 import { BsCloudSunFill, BsFillCloudMoonFill } from "react-icons/bs";
 import UserModal from "./UserModal";
-import { AuthContext } from "../../../providers/AuthProviders";
 import { useTheme } from "../../../providers/ThemeProvider";
 import { AiOutlineMenu } from "react-icons/ai";
 import toast, { Toaster } from "react-hot-toast";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebase/firebase.config";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../redux/features/user/userSlice";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const { email } = useSelector((state) => state.userSlice);
   const { theme, themeSwitchHandler } = useTheme(); // for using light and dark themes
 
   useEffect(() => {
@@ -18,11 +22,9 @@ const Navbar = () => {
   }, [theme]);
 
   const handleLogout = () => {
-    logOut()
-      .then(() => {
-        toast.success("User logout successful");
-      })
-      .catch((error) => console.log(error));
+      signOut(auth)
+      dispatch(logout())
+      toast.success("User logout successful");
   };
   return (
     <div className="px-4 mx-auto h-24">
@@ -69,7 +71,7 @@ const Navbar = () => {
               Blogs
             </NavLink>
           </li>
-          {user && (
+          {email && (
             <>
               <li>
                 <NavLink
@@ -127,7 +129,7 @@ const Navbar = () => {
               />
             )}
           </div>
-          {user ? (
+          {email ? (
             <>
               <UserModal handleLogout={handleLogout} />
             </>
@@ -205,7 +207,7 @@ const Navbar = () => {
                         Blog
                       </Link>
                     </li>
-                    {user && (
+                    {email && (
                       <>
                         <li>
                           <Link
@@ -257,7 +259,7 @@ const Navbar = () => {
                         )}
                       </div>
                     </li>
-                    {user ? (
+                    {email ? (
                       <li>
                         <UserModal handleLogout={handleLogout} />
                       </li>

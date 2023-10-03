@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./ShopByCategory.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -7,11 +7,11 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import { AuthContext } from "../../../providers/AuthProviders";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 const ShopByCategory = () => {
-  const { user } = useContext(AuthContext);
+  const { email } = useSelector((state) => state.userSlice);
   const [categoryData, setCategoryData] = useState([]);
   const [activeTab, setActiveTab] = useState("scienceSubCategory");
 
@@ -86,7 +86,7 @@ const ShopByCategory = () => {
                       <Rating style={{ maxWidth: 100 }} value={5} />
                       <p>{toy.rating}</p>
                     </div>
-                    {user ? (
+                    {email ? (
                       <Link to={`categoryToyDetails/${toy._id}`}>
                         <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
                           View Details
@@ -124,7 +124,7 @@ const ShopByCategory = () => {
                       <Rating style={{ maxWidth: 100 }} value={5} />
                       <p>{toy.rating}</p>
                     </div>
-                    {user ? (
+                    {email ? (
                       <Link to={`categoryToyDetails/${toy._id}`}>
                         <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
                           View Details
@@ -162,7 +162,7 @@ const ShopByCategory = () => {
                       <Rating style={{ maxWidth: 100 }} value={5} />
                       <p>{toy.rating}</p>
                     </div>
-                    {user ? (
+                    {email ? (
                       <Link to={`categoryToyDetails/${toy._id}`}>
                         <button className="btn bg-pink-500 hover:bg-pink-600 border-none h-4 rounded-3xl btn-sm px-4">
                           View Details

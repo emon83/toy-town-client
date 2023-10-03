@@ -1,20 +1,19 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsFillHouseAddFill } from "react-icons/bs";
-import { AuthContext } from "../../../providers/AuthProviders";
 import logo from "../../../assets/logos/logo.png";
+import { useSelector } from "react-redux";
 // import AdminSidebar from "./AdminSidebar";
 // import InstructorSidebar from "./InstructorSidebar";
 // import StudentSidebar from "./StudentSidebar";
 const Sidebar = () => {
-  const { user } = useContext(AuthContext);
+  const { email, photoURL, name } = useSelector((state) => state.userSlice);
 
   const [isActive, setActive] = useState("false");
   const handleToggle = () => {
     setActive(!isActive);
   };
-
 
   return (
     <>
@@ -49,19 +48,19 @@ const Sidebar = () => {
               <Link to="/dashboard">
                 <img
                   className="object-cover w-24 h-24 mx-2 rounded-full"
-                  src={user?.photoURL}
+                  src={photoURL}
                   alt="avatar"
                   referrerPolicy="no-referrer"
                 />
               </Link>
               <Link to="/dashboard">
                 <h4 className="mx-2 mt-2 font-medium text-gray-800  hover:underline">
-                  {user?.displayName}
+                  {name}
                 </h4>
               </Link>
               <Link to="/dashboard">
                 <p className="mx-2 mt-1 text-sm font-medium text-gray-600  hover:underline">
-                  {user?.email}
+                  {email}
                 </p>
               </Link>
             </div>
