@@ -8,9 +8,12 @@ const baseApi = createApi({
     getProducts: builder.query({
       query: () => "/allProducts",
     }),
+    getProductsByCategory: builder.query({
+      query: (category) => `/allProducts/${category}`,
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = baseApi;
+export const { useGetProductsQuery, useGetProductsByCategoryQuery } = baseApi;
 
 export default baseApi;

@@ -22,13 +22,13 @@ const Navbar = () => {
   }, [theme]);
 
   const handleLogout = () => {
-      signOut(auth)
-      dispatch(logout())
-      toast.success("User logout successful");
+    signOut(auth);
+    dispatch(logout());
+    toast.success("User logout successful");
   };
   return (
     <div className="px-4 mx-auto h-24">
-      <Toaster/>
+      <Toaster />
       <div className="relative flex items-center justify-between">
         <Link
           to="/"
@@ -53,64 +53,35 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/allToys"
-              aria-label="All Toys"
-              title="All Toys"
+              to="/shop"
+              aria-label="shop"
+              title="shop"
               className={({ isActive }) => (isActive ? "active" : "default")}
             >
-              All Toys
+              Shop
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/blog"
-              aria-label="Blogs"
-              title="Blogs"
+              to="/pricing"
+              aria-label="Pricing"
+              title="Pricing"
               className={({ isActive }) => (isActive ? "active" : "default")}
             >
-              Blogs
+              Pricing
             </NavLink>
           </li>
-          {email && (
-            <>
-              <li>
-                <NavLink
-                  to="/myToy"
-                  aria-label="My Toys"
-                  title="My Toys"
-                  className={({ isActive }) =>
-                    isActive ? "active" : "default"
-                  }
-                >
-                  My Toys
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/addAToy"
-                  aria-label="Add A Toy"
-                  title="Add A Toy"
-                  className={({ isActive }) =>
-                    isActive ? "active" : "default"
-                  }
-                >
-                  Add A Toy
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard"
-                  aria-label="DashBoard"
-                  title="DashBoard"
-                  className={({ isActive }) =>
-                    isActive ? "active" : "default"
-                  }
-                >
-                  DashBoard
-                </NavLink>
-              </li>
-            </>
-          )}
+
+          <li>
+            <NavLink
+              to="/dashboard"
+              aria-label="DashBoard"
+              title="DashBoard"
+              className={({ isActive }) => (isActive ? "active" : "default")}
+            >
+              DashBoard
+            </NavLink>
+          </li>
         </ul>
         <ul className="items-center hidden space-x-8 lg:flex">
           {/* For dark and light mood */}
@@ -146,7 +117,7 @@ const Navbar = () => {
           )}
         </ul>
         <div className="lg:hidden">
-        <button
+          <button
             aria-label="Open Menu"
             title="Open Menu"
             onClick={() => setIsMenuOpen(true)}
@@ -189,12 +160,12 @@ const Navbar = () => {
                   <ul className="space-y-4">
                     <li>
                       <Link
-                        to="/allToys"
-                        aria-label="All Toys"
-                        title="All Toys"
+                        to="/shop"
+                        aria-label="Shop"
+                        title="Shop"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        All Toys
+                        Shop
                       </Link>
                     </li>
                     <li>
@@ -207,40 +178,29 @@ const Navbar = () => {
                         Blog
                       </Link>
                     </li>
-                    {email && (
-                      <>
-                        <li>
-                          <Link
-                            to="/myToy"
-                            aria-label="My Toys"
-                            title="My Toys"
-                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                          >
-                            My Toys
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/addAToy"
-                            aria-label="Add A Toy"
-                            title="Add A Toy"
-                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                          >
-                            Add A Toy
-                          </Link>
-                        </li>
-                        <li>
-                        <Link
-                          to="/dashboard"
-                          aria-label="DashBoard"
-                          title="DashBoard"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          DashBoard
-                        </Link>
-                      </li>
-                      </>
-                    )}
+
+                    <li>
+                      <Link
+                        to="/pricing"
+                        aria-label="Pricing"
+                        title="Pricing"
+                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                      >
+                        Pricing
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        to="/dashboard"
+                        aria-label="DashBoard"
+                        title="DashBoard"
+                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                      >
+                        DashBoard
+                      </Link>
+                    </li>
+
                     <li>
                       {/* For dark and light mood */}
                       <div className="-mr-4">

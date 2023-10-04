@@ -26,6 +26,8 @@ import MyProduct from "../Pages/DashBoard/SellerDashboard/MyProduct";
 import AdminHome from "../Pages/DashBoard/AdminDashboard/AdminHome";
 import ManageUsers from "../Pages/DashBoard/AdminDashboard/ManageUsers";
 import ManageProduct from "../Pages/DashBoard/AdminDashboard/ManageProduct";
+import Shop from "../Pages/Shop/Shop";
+import Pricing from "../Pages/Pricing/Pricing";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <PrivateRoute><Home /></PrivateRoute>,
+      },
+      {
+        path: "/shop",
+        element: <PrivateRoute><Shop /></PrivateRoute>
+      },
+      {
+        path: "/pricing",
+        element: <PrivateRoute><Pricing /></PrivateRoute>
       },
       {
         path: "/categoryToyDetails/:id",
