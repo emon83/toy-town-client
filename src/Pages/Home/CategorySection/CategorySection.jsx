@@ -1,49 +1,91 @@
-import img1 from '../../../assets/category-img/product-category-01.png'
-import img2 from '../../../assets/category-img/Product-Category-02.png'
-import img3 from '../../../assets/category-img/Product-Category-03.png'
-import img4 from '../../../assets/category-img/product-category-04.png'
-import img5 from '../../../assets/category-img/product-category-05.png'
-import img6 from '../../../assets/category-img/product-category-06.png'
-import img7 from '../../../assets/category-img/Product-Category-07.png'
-import img8 from '../../../assets/category-img/product-category-08.png'
-import img9 from '../../../assets/category-img/product-category-09.jpg'
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import required modules
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+
+import img1 from "../../../assets/category-img/product-category-01.png";
+import img2 from "../../../assets/category-img/Product-Category-02.png";
+import img3 from "../../../assets/category-img/Product-Category-03.png";
+import img4 from "../../../assets/category-img/product-category-04.png";
+import img5 from "../../../assets/category-img/product-category-05.png";
+import img6 from "../../../assets/category-img/product-category-06.png";
+import img7 from "../../../assets/category-img/Product-Category-07.png";
+import img8 from "../../../assets/category-img/product-category-08.png";
+import img9 from "../../../assets/category-img/product-category-09.jpg";
 
 const CategorySection = () => {
-    const categoryImgData = [
-        {
-            img: img1
-        },
-        {
-            img: img2
-        },
-        {
-            img: img3
-        },
-        {
-            img: img4
-        },
-        {
-            img: img5
-        },
-        {
-            img: img6
-        },
-        {
-            img: img7
-        },
-        {
-            img: img8
-        },
-        {
-            img: img9
-        },
-    ]
-    console.log(categoryImgData);
-    return (
-        <div>
-            
+  const categoryData = [
+    {
+      img: img1,
+      c_name: "Bed",
+    },
+    {
+      img: img2,
+      c_name: "Carriage",
+    },
+    {
+      img: img3,
+      c_name: "Wood Toy",
+    },
+    {
+      img: img4,
+      c_name: "Accessories",
+    },
+    {
+      img: img5,
+      c_name: "Baby Equipment",
+    },
+    {
+      img: img6,
+      c_name: "For Home",
+    },
+    {
+      img: img7,
+      c_name: "Soft Toys",
+    },
+    {
+      img: img8,
+      c_name: "Educational Toy",
+    },
+    {
+      img: img9,
+      c_name: "Others",
+    },
+  ];
+  return (
+    <div>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        // navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+      >
+        <div className="">
+        {categoryData &&
+          categoryData.map((category, index) => (
+            <SwiperSlide key={index}>
+              <div>
+                <img src={category.img} alt="" />
+                <p>{category.c_name}</p>
+              </div>
+            </SwiperSlide>
+          ))}
         </div>
-    );
+      </Swiper>
+    </div>
+  );
 };
 
 export default CategorySection;

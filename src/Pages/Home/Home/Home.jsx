@@ -1,17 +1,25 @@
 import Banner from "../Banner/Banner";
+import BestSellerProduct from "../BestSellerProduct/BestSellerProduct";
 import BlogSection from "../BlogSection/BlogSection";
+import CategorySection from "../CategorySection/CategorySection";
+import ClientTestimonial from "../ClientTestimonial/ClientTestimonial";
+import CollectionSection from "../CollectionSection/CollectionSection";
 import GallerySection from "../GallerySection/GallerySection";
-import GirlsCollection from "../GirlsCollection/GirlsCollection";
-import ShopByCategory from "../ShopByCategory/ShopByCategory";
+import NewArrivalsProducts from "../NewArrivalsProducts/NewArrivalsProducts";
+// import Newsletter from "../Newsletter/Newsletter";
 
 const Home = () => {
   return (
     <>
       <Banner />
-      <GallerySection />
-      <ShopByCategory />
-      <GirlsCollection />
+      <NewArrivalsProducts/>
       <BlogSection />
+      <BestSellerProduct/>
+      <ClientTestimonial/>
+      {/* <Newsletter/> */}
+      <CategorySection/>
+      <CollectionSection/>
+      <GallerySection />
     </>
   );
 };

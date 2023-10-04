@@ -1,33 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Work+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@200;400;600;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
 /* customize class */
-.my-container{
-    @apply mx-auto sm:mx-0 md:mx-16 lg:mx-28
-  }
-.active{
-    @apply font-medium tracking-wide text-cyan-600 transition-colors duration-200
-  }
-  
-  .default{
-    @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600
-  }
-
-.primary-font{
-    font-family: 'Luckiest Guy', cursive;
+.my-container {
+  @apply mx-auto sm:mx-0 md:mx-16 lg:mx-28;
 }
-.secondary-font{
-    font-family: 'Work Sans', sans-serif;
+.active {
+  @apply font-medium tracking-wide text-cyan-600 transition-colors duration-200;
 }
 
-.btn-color{
-  @apply bg-[#00b4d8] hover:bg-[#48cae4]
+.default {
+  @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600;
 }
-.text-color{
-  @apply text-[#00b4d8]
+
+.primary-font {
+  font-family: "Jost", sans-serif;
+}
+
+.btn-color {
+  @apply bg-[#00b4d8] hover:bg-[#48cae4];
+}
+.text-color {
+  @apply text-[#00b4d8];
 }
