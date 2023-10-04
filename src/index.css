@@ -16,7 +16,7 @@
   @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600;
 }
 
-.primary-font {
+body {
   font-family: "Jost", sans-serif;
 }
 

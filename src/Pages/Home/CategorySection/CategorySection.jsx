@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 
 import img1 from "../../../assets/category-img/product-category-01.png";
 import img2 from "../../../assets/category-img/Product-Category-02.png";
@@ -16,6 +16,7 @@ import img6 from "../../../assets/category-img/product-category-06.png";
 import img7 from "../../../assets/category-img/Product-Category-07.png";
 import img8 from "../../../assets/category-img/product-category-08.png";
 import img9 from "../../../assets/category-img/product-category-09.jpg";
+import { Link } from "react-router-dom";
 
 const CategorySection = () => {
   const categoryData = [
@@ -57,32 +58,30 @@ const CategorySection = () => {
     },
   ];
   return (
-    <div>
+    <div className="my-container">
       <Swiper
         spaceBetween={30}
+        slidesPerView={8}
         centeredSlides={true}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
         // navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay, Navigation]}
         className="mySwiper"
       >
-        <div className="">
         {categoryData &&
           categoryData.map((category, index) => (
             <SwiperSlide key={index}>
-              <div>
-                <img src={category.img} alt="" />
-                <p>{category.c_name}</p>
-              </div>
+              <Link to="/shop">
+                <div className="grid place-items-center cursor-pointer">
+                  <img src={category.img} alt="" />
+                  <p>{category.c_name}</p>
+                </div>
+              </Link>
             </SwiperSlide>
           ))}
-        </div>
       </Swiper>
     </div>
   );

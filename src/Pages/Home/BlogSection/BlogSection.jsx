@@ -13,8 +13,8 @@ const BlogSection = () => {
   return (
     <div className="my-container my-32">
       <div className="text-center">
-        <h2 className="text-5xl primary-font">Read Our Blog</h2>
-        <p className="text-lg secondary-font mt-6">
+        <h2 className="text-3xl">Read Our Blog</h2>
+        <p className="text-lg mt-4 mb-8">
           We celebrate childhood by supporting babies, children, and families{" "}
           <br />
           with thoughtful designs and quality materials.

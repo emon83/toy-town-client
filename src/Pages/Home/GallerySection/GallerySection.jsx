@@ -61,17 +61,17 @@ const GallerySection = () => {
   }, []);
 
   return (
-    <div className="mt-28 my-container">
+    <div className="my-28 my-container">
       <div className="text-center">
-        <h2 className="text-5xl font-bold primary-font">Gallery Section</h2>
-        <h6 className="text-lg secondary-font my-6 text-gray-600">
+        <h2 className="text-3xl">Gallery Section</h2>
+        <h6 className="text-lg mt-4 mb-8 text-gray-600">
           We’ve picked few pieces we’re pretty sure you’ll love. <br />
           Check back often and enjoy.
         </h6>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 mt-10 gap-4">
         {galleryImgData?.map((imgData, index) => (
-          <div className="group" key={index} data-aos="fade-up">
+          <div className="group" key={index}>
             <img
               className="group-hover:scale-105 transition-transform rounded-sm"
               src={imgData.img}
