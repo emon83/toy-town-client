@@ -19,7 +19,7 @@ const Login = () => {
   const navigate = useNavigate();
   useTitle("Login");
   const dispatch = useDispatch();
-  const { isLoading, email, name, photoURL, isError, error } = useSelector(
+  const { isLoading, email, name, photoURL:imageUrl, isError, error } = useSelector(
     (state) => state.userSlice
   );
   const [saveUser, { data, error: userError }] = useSaveUserMutation();
@@ -59,17 +59,17 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (!isLoading && email && name && photoURL) {
+    if (!isLoading && email && name && imageUrl) {
       // Save user data to the database
       const userData = {
         name,
         email,
-        photoURL,
+        imageUrl,
       };
 
       saveUser({ userData, email });
     }
-  }, [isLoading, email, name, photoURL, saveUser]);
+  }, [isLoading, email, name, imageUrl, saveUser]);
 
   const onSubmit = (data) => {
     const email = data.email;
