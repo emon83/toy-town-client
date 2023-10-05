@@ -132,7 +132,7 @@ const router = createBrowserRouter([
     children: [
       //Users routes
       {
-        path: "/dashboard/my-card",
+        path: "/dashboard/my-cart",
         element: <MyCart />,
       },
       {

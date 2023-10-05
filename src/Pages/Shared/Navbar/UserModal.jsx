@@ -37,7 +37,7 @@ function UserModal({ handleLogout }) {
           <Link to="/user-profile">
             <div className="text-center">
               <div className="btn btn-circle relative text-white text-base font-bold outline-none border-none  hover:text-white btn-color">
-                {name.slice(0, 1) || "User"}
+                {name?.slice(0, 1) || "User"}
               </div>
               <div
                 className="hidden md:block ml-5"

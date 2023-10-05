@@ -7,17 +7,23 @@ import logo from "../../assets/logos/google.png";
 import useTitle from "../../hooks/useTitle";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, socialLoginUser } from "../../redux/features/user/userSlice";
+import {
+  loginUser,
+  socialLoginUser,
+} from "../../redux/features/user/userSlice";
 import { useEffect } from "react";
+import { useSaveUserMutation } from "../../redux/api/baseApi";
 
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   useTitle("Login");
   const dispatch = useDispatch();
-  const {isLoading, email, isError, error} = useSelector((state) => state.userSlice);
+  const { isLoading, email, name, photoURL, isError, error } = useSelector(
+    (state) => state.userSlice
+  );
+  const [saveUser, { data, error: userError }] = useSaveUserMutation();
   const from = location.state?.from?.pathname || "/";
-
 
   const defaultOptions = {
     loop: true,
@@ -35,23 +41,42 @@ const Login = () => {
   } = useForm();
 
   useEffect(() => {
-    if (isError && error) {
-      toast.error(error)
+    if (isError && error && userError) {
+      toast.error(error);
+      toast.error(userError);
     }
-  }, [isError, error]);
+  }, [isError, error, userError]);
 
   useEffect(() => {
     if (!isLoading && email) {
-      navigate(from, {replace: true});
+      navigate(from, { replace: true });
       toast.success("User login successfully");
     }
   }, [isLoading, email]);
 
+  const handleSocialLogin = () => {
+    dispatch(socialLoginUser());
+  };
+
+  useEffect(() => {
+    if (!isLoading && email && name && photoURL) {
+      // Save user data to the database
+      const userData = {
+        name,
+        email,
+        photoURL,
+      };
+
+      saveUser({ userData, email });
+    }
+  }, [isLoading, email, name, photoURL, saveUser]);
+
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
-    dispatch(loginUser({ email, password }))
+    dispatch(loginUser({ email, password }));
   };
+
   return (
     <div className="w-full md:flex items-center justify-center mx-auto bg-[#caf0f8] md:h-[100vh]">
       <Toaster />
@@ -85,7 +110,7 @@ const Login = () => {
         </p>
         <div>
           <div
-            onClick={()=> dispatch(socialLoginUser())}
+            onClick={() => handleSocialLogin()}
             className="flex items-center justify-center gap-4 social-login my-4"
           >
             <img className="w-6 ml-4" src={logo} alt="Google logo" />

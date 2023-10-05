@@ -4,18 +4,25 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./SignUp.css";
 import { useForm } from "react-hook-form";
 import logo from "../../assets/logos/google.png";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import useTitle from "../../hooks/useTitle";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser, socialLoginUser } from "../../redux/features/user/userSlice";
+import {
+  createUser,
+  socialLoginUser,
+} from "../../redux/features/user/userSlice";
+import { useSaveUserMutation } from "../../redux/api/baseApi";
 
 const SignUp = () => {
   useTitle("SignUp");
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const {isLoading, email, isError, error} = useSelector((state) => state.userSlice);
+  const { isLoading, email, name, photoURL, isError, error } = useSelector(
+    (state) => state.userSlice
+  );
+  const [saveUser, { data, error: userError }] = useSaveUserMutation();
   const from = location.state?.from?.pathname || "/";
 
   // For lottie react animations
@@ -35,14 +42,15 @@ const SignUp = () => {
   } = useForm();
 
   useEffect(() => {
-    if (isError && error) {
-      toast.error(error)
+    if ((isError && error) || userError) {
+      toast.error(error);
+      toast.error(userError);
     }
-  }, [isError, error]);
+  }, [isError, error, userError]);
 
   useEffect(() => {
     if (!isLoading && email) {
-      navigate(from, {replace: true});
+      navigate(from, { replace: true });
       toast.success("User sign-up successfully");
     }
   }, [isLoading, email]);
@@ -52,10 +60,6 @@ const SignUp = () => {
   }`;
 
   const onSubmit = (data) => {
-    const name = data.userName;
-    const email = data.email;
-    const password = data.password;
-
     //Image upload
     const formData = new FormData();
     formData.append("image", data.photoUrl[0]);
@@ -67,19 +71,43 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((imageData) => {
         const imageUrl = imageData.data.display_url;
-
         dispatch(
           createUser({
-            name,
-            email,
-            password,
+            name: data.userName,
+            email: data.email,
+            password: data.password,
             imageUrl,
           })
         );
-        //save user to db
+        // Save user data to the database
+       if (!isLoading && email) {
+        const userData = {
+          name: data.userName,
+          email: data.email,
+          imageUrl,
+        };
+        console.log(userData);
+        saveUser({ userData, email });
+       }
       });
-    console.log(data);
   };
+
+  const handleSocialLogin = () => {
+    dispatch(socialLoginUser());
+  };
+
+  useEffect(() => {
+    if (!isLoading && email && name && photoURL) {
+      // Save user data to the database
+      const userData = {
+        name,
+        email,
+        photoURL,
+      };
+      
+      saveUser({ userData, email });
+    }
+  }, [isLoading, email, name, photoURL,saveUser]);
 
   return (
     <div className="md:flex justify-center items-center md:h-[100vh] bg-[#caf0f8]">
@@ -135,13 +163,13 @@ const SignUp = () => {
             className="btn btn-sm sm:btn-md btn-color border-none btn-block rounded-3xl"
           />
         </form>
-        
+
         <p className="px-3 text-sm text-gray-600 text-center mt-3">
           SignUp with social accounts
         </p>
         <div>
           <div
-            onClick={()=> dispatch(socialLoginUser())}
+            onClick={() => handleSocialLogin()}
             className="flex items-center justify-center gap-4 social-signup mt-3 cursor-pointer"
           >
             <img className="w-6" src={logo} alt="Google Logo" />

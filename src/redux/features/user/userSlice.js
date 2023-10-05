@@ -18,13 +18,13 @@ export const createUser = createAsyncThunk(
   async ({email, password, name, imageUrl}) => {
     const data = await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL: imageUrl,
+      displayName: name,
+      photoURL: imageUrl,
     })
-    console.log(data);
     return {
       email: data.user.email,
       name: data.user.displayName,
+      photoURL: data.user.photoURL,
     };
   }
 );
@@ -38,6 +38,7 @@ export const loginUser = createAsyncThunk(
       return {
         email: data.user.email,
         name: data.user.displayName,
+        photoURL: data.user.photoURL,
       };
 
     } catch (error) {

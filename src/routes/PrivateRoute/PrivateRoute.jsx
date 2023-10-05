@@ -23,7 +23,7 @@ const PrivateRoute = ({ children }) => {
             photoURL: user.photoURL,
           })
         );
-        console.log(user);
+        // console.log(user);
         dispatch(toggleLoading(false));
       } else {
         dispatch(toggleLoading(false));

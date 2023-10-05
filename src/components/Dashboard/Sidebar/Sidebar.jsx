@@ -1,14 +1,17 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsFillHouseAddFill } from "react-icons/bs";
 import logo from "../../../assets/logos/logo.png";
 import { useSelector } from "react-redux";
-// import AdminSidebar from "./AdminSidebar";
-// import InstructorSidebar from "./InstructorSidebar";
-// import StudentSidebar from "./StudentSidebar";
+import AdminSidebar from "./AdminSidebar";
+import SellerSidebar from "./SellerSidebar";
+import UserSidebar from "./UserSidebar";
+import { useGetUserQuery } from "../../../redux/api/baseApi";
+
 const Sidebar = () => {
   const { email, photoURL, name } = useSelector((state) => state.userSlice);
+  const {data, isLoading, error} = useGetUserQuery(email);
 
   const [isActive, setActive] = useState("false");
   const handleToggle = () => {
@@ -68,16 +71,16 @@ const Sidebar = () => {
 
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
-            {/* { role &&
-            role === "admin" ? (
+            { data &&
+            data?.role === "admin" ? (
               <>
                 <AdminSidebar />
               </>
-            ) : role === "instructor" ? (
-              <InstructorSidebar />
+            ) : data?.role === "seller" ? (
+              <SellerSidebar />
             ) : (
-              <StudentSidebar />
-            )} */}
+              <UserSidebar />
+            )}
             {/* <UserSidebar/> */}
           </div>
         </div>

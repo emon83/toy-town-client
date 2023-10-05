@@ -11,9 +11,28 @@ const baseApi = createApi({
     getProductsByCategory: builder.query({
       query: (category) => `/allProducts/${category}`,
     }),
+    saveUser: builder.mutation({
+      query: ({ userData, email }) => ({
+        url: `/user/${email}`,
+        method: "PUT",
+        body: userData,
+      }),
+    }),
+    getUsers: builder.query({
+      query: () => "/users",
+    }),
+    getUser: builder.query({
+      query: (email) => `/users/${email}`,
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetProductsByCategoryQuery } = baseApi;
+export const {
+  useGetProductsQuery,
+  useGetProductsByCategoryQuery,
+  useSaveUserMutation,
+  useGetUsersQuery,
+  useGetUserQuery,
+} = baseApi;
 
 export default baseApi;

@@ -15,7 +15,7 @@ import img5 from "../../../assets/category-img/product-category-05.png";
 import img6 from "../../../assets/category-img/product-category-06.png";
 import img7 from "../../../assets/category-img/Product-Category-07.png";
 import img8 from "../../../assets/category-img/product-category-08.png";
-import img9 from "../../../assets/category-img/product-category-09.jpg";
+import img9 from "../../../assets/category-img/product-category-09.png";
 import { Link } from "react-router-dom";
 
 const CategorySection = () => {
