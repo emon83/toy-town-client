@@ -28,6 +28,7 @@ import ManageUsers from "../Pages/DashBoard/AdminDashboard/ManageUsers";
 import ManageProduct from "../Pages/DashBoard/AdminDashboard/ManageProduct";
 import Shop from "../Pages/Shop/Shop";
 import Pricing from "../Pages/Pricing/Pricing";
+import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <PrivateRoute><Shop /></PrivateRoute>
+      },
+      {
+        path: "/product-details/:id",
+        element: <PrivateRoute><ProductDetails /></PrivateRoute>
       },
       {
         path: "/pricing",
