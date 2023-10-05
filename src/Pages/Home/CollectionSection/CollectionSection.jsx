@@ -19,8 +19,8 @@ const collectionData = [
 
 const CollectionSection = () => {
   return (
-    <div className="mt-28 my-container w-full">
-      <div className="lg:flex items-center lg:mx-36">
+    <div className="mt-28 w-full">
+      <div className="md:flex items-center justify-center xl:gap-40 lg:gap-32 gap-10 mx-auto">
         {collectionData &&
           collectionData.length > 0 &&
           collectionData?.map((collection) => (

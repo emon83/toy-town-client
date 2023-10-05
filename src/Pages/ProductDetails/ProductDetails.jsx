@@ -1,14 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useGetProductsByIdQuery } from "../../redux/api/baseApi";
+import { useGetProductsByCategoryQuery, useGetProductsByIdQuery } from "../../redux/api/baseApi";
 import ProductDescription from "./ProductDescription";
 import ProductInformation from "./ProductInformation";
 import ProductReview from "./ProductReview";
 import { useState } from "react";
+import SingleRelatedProduct from "./SingleRelatedProduct";
 
 const ProductDetails = () => {
   const [activeComponent, setActiveComponent] = useState("ProductDescription"); //by default component uses active component
   const { id } = useParams();
   const { data: productData, isLoading, error } = useGetProductsByIdQuery(id);
+  const {
+    data: products,
+  } = useGetProductsByCategoryQuery(productData?.product_category);
+
+  const relatedProducts = products?.filter(product => product._id !== productData._id);
 
   const handleButtonClick = (componentName) => {
     setActiveComponent(componentName);
@@ -69,8 +75,13 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <div>
-
+      <div className="my-10">
+        <h4 className="text-2xl my-6 text-center">RELATED PRODUCTS</h4>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mx-auto">
+        {
+            relatedProducts && relatedProducts.length > 0 && relatedProducts.map(product => <SingleRelatedProduct key={product._id} product={product}/> )
+        }
+        </div>
       </div>
     </>
   );
