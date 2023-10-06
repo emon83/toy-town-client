@@ -29,4 +29,5 @@ export const {
   useGetProductsByCategoryQuery,
   useGetProductsByIdQuery,
   useSaveCartProductMutation,
+  useGetCartProductsQuery,
 } = productApi;
