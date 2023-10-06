@@ -12,7 +12,7 @@ import {
   createUser,
   socialLoginUser,
 } from "../../redux/features/user/userSlice";
-import { useSaveUserMutation } from "../../redux/api/baseApi";
+import { useSaveUserMutation } from "../../redux/features/user/userApi";
 
 const SignUp = () => {
   useTitle("SignUp");

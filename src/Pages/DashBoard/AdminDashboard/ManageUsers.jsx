@@ -1,5 +1,5 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useGetUsersQuery } from "../../../redux/api/baseApi";
+import { useGetUsersQuery } from "../../../redux/features/user/userApi";
 
 const ManageUsers = () => {
     const {data:users, isLoading, error} = useGetUsersQuery();

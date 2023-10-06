@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import AdminSidebar from "./AdminSidebar";
 import SellerSidebar from "./SellerSidebar";
 import UserSidebar from "./UserSidebar";
-import { useGetUserQuery } from "../../../redux/api/baseApi";
+import { useGetUserQuery } from "../../../redux/features/user/userApi";
 
 const Sidebar = () => {
   const { email, photoURL, name } = useSelector((state) => state.userSlice);

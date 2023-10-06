@@ -201,7 +201,7 @@ const AddProduct = () => {
 
           <input
             type="submit"
-            value="Add A Toy"
+            value="Add A Product"
             className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
           />
         </form>

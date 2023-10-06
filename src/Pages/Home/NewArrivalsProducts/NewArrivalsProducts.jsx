@@ -1,4 +1,4 @@
-import { useGetProductsQuery } from "../../../redux/api/baseApi";
+import { useGetProductsQuery } from "../../../redux/features/products/productsApi";
 import NewSingleProduct from "./NewSingleProduct";
 
 const NewArrivalsProducts = () => {

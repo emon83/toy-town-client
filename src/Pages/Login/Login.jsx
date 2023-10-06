@@ -12,7 +12,8 @@ import {
   socialLoginUser,
 } from "../../redux/features/user/userSlice";
 import { useEffect } from "react";
-import { useSaveUserMutation } from "../../redux/api/baseApi";
+import { useSaveUserMutation } from "../../redux/features/user/userApi";
+
 
 const Login = () => {
   const location = useLocation();

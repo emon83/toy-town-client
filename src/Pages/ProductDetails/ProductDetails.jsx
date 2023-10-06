@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useGetProductsByCategoryQuery, useGetProductsByIdQuery } from "../../redux/api/baseApi";
 import ProductDescription from "./ProductDescription";
 import ProductInformation from "./ProductInformation";
 import ProductReview from "./ProductReview";
 import { useState } from "react";
 import SingleRelatedProduct from "./SingleRelatedProduct";
+import { useGetProductsByCategoryQuery, useGetProductsByIdQuery } from "../../redux/features/products/productsApi";
 
 const ProductDetails = () => {
   const [activeComponent, setActiveComponent] = useState("ProductDescription"); //by default component uses active component

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useGetProductsByCategoryQuery } from "../../redux/api/baseApi";
 import SingleProduct from "./SingleProduct";
+import { useGetProductsByCategoryQuery } from "../../redux/features/products/productsApi";
 
 const Shop = () => {
   const [selectedCategory, setSelectedCategory] = useState("Bed"); // Default category

@@ -1,4 +1,5 @@
-import { useGetProductsQuery } from "../../../redux/api/baseApi";
+import { useGetProductsQuery } from "../../../redux/features/products/productsApi";
+
 
 const ManageProduct = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
