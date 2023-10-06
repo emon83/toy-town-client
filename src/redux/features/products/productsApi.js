@@ -18,6 +18,9 @@ const productApi = baseApi.injectEndpoints({
         body: product,
       }),
     }),
+    getCartProducts: builder.query({
+        query: (email) => `/cartProducts/${email}`,
+    })
   }),
 });
 
