@@ -161,7 +161,7 @@ const Checkout = () => {
                     </div>
                     <div className="flex items-center justify-between">
                         <p>Grand Total</p>
-                        <p>{product?.price + 19}</p>
+                        <p>${product?.price + 19}</p>
                     </div>
                 </div>
           </>
