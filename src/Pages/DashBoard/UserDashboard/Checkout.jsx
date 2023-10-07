@@ -30,10 +30,11 @@ const Checkout = () => {
   const onSubmit = (data) => {
     const productData = {
       ...data,
-      product_name: product.product_name,
-      product_img: product.product_img,
+      product_name: product.name,
+      product_img: product.img,
       product_id: product.productId,
-      customer_img: product.customer_img,
+      customer_name: product.customer_name,
+      date: product.date,
       price: product?.price + 19,
       isPurchase: true,
     }
@@ -45,6 +46,7 @@ const Checkout = () => {
     deleteCartProduct(product._id);
     navigate('/dashboard/my-cart')
   };
+  console.log(product);
   return (
     <>
     <Toaster/>

@@ -70,6 +70,9 @@ const productApi = baseApi.injectEndpoints({
       //   },
       // },
     }),
+    getPaymentProduct: builder.query({
+      query: (email) => `/payment/${email}`,
+    }),
   }),
 });
 
@@ -83,4 +86,5 @@ export const {
   useGetCartProductsQuery,
   useDeleteCartProductMutation,
   usePaymentProductMutation,
+  useGetPaymentProductQuery,
 } = productApi;
