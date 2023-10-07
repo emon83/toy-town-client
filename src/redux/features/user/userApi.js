@@ -11,12 +11,52 @@ const userApi = baseApi.injectEndpoints({
     }),
     getUsers: builder.query({
       query: () => "/users",
+      providesTags: ["Users"],
     }),
     getUser: builder.query({
       query: (email) => `/users/${email}`,
     }),
+    makeUser: builder.mutation({
+      query: (id) => ({
+        url: `/users/user/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    makeSeller: builder.mutation({
+      query: (id) => ({
+        url: `/users/seller/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Users"],
+      // options: {
+      //   fetchBaseQuery: {
+      //     // Replace with your server's URL
+      //     baseUrl: "http://localhost:5000",
+      //     // Include credentials: "include" if necessary
+      //     credentials: "include",
+      //     // Additional headers if needed (e.g., authorization headers)
+      //     // headers: {
+      //     //   Authorization: `Bearer ${yourAccessToken}`,
+      //     // },
+      //   },
+      // },
+    }),
+    makeAdmin: builder.mutation({
+      query: (id) => ({
+        url: `/users/admin/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Users"],
+    }),
   }),
 });
 
-export const { useSaveUserMutation, useGetUsersQuery, useGetUserQuery } =
-  userApi;
+export const {
+  useSaveUserMutation,
+  useGetUsersQuery,
+  useGetUserQuery,
+  useMakeUserMutation,
+  useMakeSellerMutation,
+  useMakeAdminMutation,
+} = userApi;

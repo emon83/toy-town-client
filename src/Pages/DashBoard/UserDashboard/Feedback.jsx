@@ -25,7 +25,7 @@ function getRating(rating) {
 const Feedback = () => {
   const [rating, setRating] = useState(5);
   const { email, photoURL, name } = useSelector((state) => state.userSlice);
-  const [feedbackData, {data:fedData, error}] = useSaveFeedbackMutation()
+  const [feedbackData, {data, error}] = useSaveFeedbackMutation()
   const {
     register,
     handleSubmit,

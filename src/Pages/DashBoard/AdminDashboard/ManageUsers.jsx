@@ -1,20 +1,36 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useGetUsersQuery } from "../../../redux/features/user/userApi";
+import {
+  useGetUsersQuery,
+  useMakeSellerMutation,
+  useMakeUserMutation,
+} from "../../../redux/features/user/userApi";
+import toast, { Toaster } from "react-hot-toast";
 
 const ManageUsers = () => {
-    const {data:users, isLoading, error} = useGetUsersQuery();
+  const { data: users, isLoading, error } = useGetUsersQuery();
+  const [makeSeller, { data }] = useMakeSellerMutation();
+  const [makeAdmin] = useMakeSellerMutation();
+  const [makeUser] = useMakeUserMutation();
 
-    const handleMakeAdmin = (user) => { 
-        console.log(user);
-    }
+  const handleMakeAdmin = (user) => {
+    makeAdmin(user._id);
+    toast.success("This User make Admin successfully!");
+  };
 
-    const handleMakeSeller = (user) => {
-        console.log(user);
-    }
+  const handleMakeSeller = (user) => {
+    makeSeller(user._id);
+    toast.success("This User make Seller successfully!");
+  };
 
-    return (
-        <>
-            <div className="overflow-x-auto">
+  const handleMakeUser = (user) => {
+    makeUser(user._id);
+    toast.success("This User make User successfully!");
+  };
+
+  return (
+    <>
+      <Toaster />
+      <div className="overflow-x-auto">
         <table className="table">
           <thead>
             <tr>
@@ -55,18 +71,25 @@ const ManageUsers = () => {
                     >
                       Seller
                     </button>
+                    <button
+                      onClick={() => handleMakeUser(user)}
+                      className="btn btn-xs"
+                      disabled={user.role === "user" || !user.role}
+                    >
+                      User
+                    </button>
                   </div>
                 </td>
                 <td>
-                    <RiDeleteBin6Line className="text-red-500 w-8 mx-auto"/>
+                  <RiDeleteBin6Line className="text-red-500 w-8 mx-auto" />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-        </>
-    );
+    </>
+  );
 };
 
 export default ManageUsers;

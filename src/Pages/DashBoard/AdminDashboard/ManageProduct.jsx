@@ -3,6 +3,7 @@ import { useGetProductsQuery } from "../../../redux/features/products/productsAp
 
 const ManageProduct = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
+
   return (
     <div>
       <div className="overflow-x-auto">
