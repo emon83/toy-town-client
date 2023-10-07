@@ -1,15 +1,58 @@
 import { useForm } from "react-hook-form";
+import { useSaveProductMutation } from "../../../redux/features/products/productsApi";
+import toast, { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 const AddProduct = () => {
+  const { email, name } = useSelector((state) => state.userSlice);
+  const [saveProduct] = useSaveProductMutation();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const url = `https://api.imgbb.com/1/upload?key=${
+    import.meta.env.VITE_IMGBB_KEY
+  }`;
+  const onSubmit = (data) => {
+    //Image upload
+    const formData = new FormData();
+    formData.append("image", data.img[0]);
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        const img = imageData.data.url;
+
+      // Generate a unique SKU number
+      const prefix = "PROD"; // You can customize the prefix
+      const randomPart = Math.floor(Math.random() * 10000); // Generate a random number (adjust the range as needed)
+      const timestampPart = Date.now(); // Get the current timestamp
+
+      // Combine the parts to create the SKU
+      const SKU = `${prefix}-${randomPart}-${timestampPart}`;
+        //save product to database
+        const productData = {
+          ...data,
+          img,
+          seller_email: email,
+          details_img: 'https://imgpile.com/images/DxHwxw.jpg',
+          SKU,
+          status: 'pending',
+          reviews: []
+        };
+        // save product
+        saveProduct(productData);
+        toast.success('Product saved successfully')
+      });
+  };
 
   return (
     <div>
+      <Toaster/>
       <h2 className="text-2xl primary-font text-center">Add A Toy Section</h2>
       <p className="text-base secondary-font my-6 text-gray-600 text-center italic">
         Welcome to Add-A-Toy, your one-stop destination for a world <br /> of
@@ -54,6 +97,7 @@ const AddProduct = () => {
               <input
                 type="text"
                 className="italic"
+                placeholder="Product quantity"
                 {...register("quantity", { required: true })}
               />
             </div>
@@ -62,7 +106,7 @@ const AddProduct = () => {
             <div className="w-full">
               <label>Tags</label>
               <input
-              type="text"
+                type="text"
                 className="italic"
                 placeholder="Tags"
                 {...register("tags", { required: true })}
@@ -72,12 +116,12 @@ const AddProduct = () => {
             <div className="w-full">
               <label>Price</label>
               <input
-              type="text"
+                type="text"
                 className="italic"
                 placeholder="Price"
                 {...register("price")}
               />
-              {errors.photoUrl && (
+              {errors.price && (
                 <span className="text-sky-500 text-xs font-semibold">
                   This field is required
                 </span>
@@ -88,7 +132,7 @@ const AddProduct = () => {
             <div className="w-full">
               <label>Variant</label>
               <input
-              type="text"
+                type="text"
                 className="italic"
                 placeholder="Variant"
                 {...register("variant", { required: true })}
@@ -109,7 +153,7 @@ const AddProduct = () => {
             <div className="w-full">
               <label>Material</label>
               <input
-              type="text"
+                type="text"
                 className="italic"
                 placeholder="Material"
                 {...register("material", { required: true })}
@@ -130,7 +174,7 @@ const AddProduct = () => {
             <div className="w-full">
               <label>Collection</label>
               <input
-              type="text"
+                type="text"
                 className="italic"
                 placeholder="Collection Time"
                 {...register("collection", { required: true })}
@@ -159,12 +203,12 @@ const AddProduct = () => {
             </div>
 
             <div className="w-full">
-              <label>Details Image</label>
+              <label>Category</label>
               <input
                 required
-                type="file"
-                accept="image/*"
-                {...register("details_img")}
+                type="text"
+                placeholder="Category Name"
+                {...register("category")}
               />
             </div>
           </div>
@@ -172,8 +216,9 @@ const AddProduct = () => {
             <div className="w-full">
               <label>Seller Name</label>
               <input
-              type="text"
+                type="text"
                 className="italic"
+                defaultValue={name}
                 placeholder="Seller Name"
                 {...register("seller", { required: true })}
               />

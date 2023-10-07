@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useGetCartProductsQuery } from "../../../redux/features/products/productsApi";
+import { useDeleteCartProductMutation, useGetCartProductsQuery } from "../../../redux/features/products/productsApi";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../../../redux/features/products/productSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 const MyCart = () => {
   const dispatch = useDispatch();
   const { email } = useSelector((state) => state.userSlice);
+  const [deleteCartProduct] = useDeleteCartProductMutation();
   const {
     data: cartProduct,
     isLoading,
@@ -18,12 +20,19 @@ const MyCart = () => {
     );
     // localStorage.setItem('product_id', product._id);
   };
-  const handleRemoveFromCart = (productId) => {
-    dispatch(removeFromCart(productId));
+
+  const handleRemoveFromCart = (product) => {
+     //dispatch(removeFromCart(productId));
+    // remove from cart to db
+    //Todo: remove from cart not working properly
+    deleteCartProduct(product._id);
+    console.log(product);
+    toast.success('Product removed successfully')
   };
 
   return (
     <div>
+      <Toaster/>
       <div className="overflow-x-auto">
         <table className="table">
           <thead>
@@ -57,7 +66,7 @@ const MyCart = () => {
                   <td>{product?.seller}</td>
                   <td className="text-center">{product?.availableQuantity}</td>
                   <td>
-                    <button onClick={() => dispatch(handleRemoveFromCart(product._id))} className="btn btn-xs">Delete</button>
+                    <button onClick={() => handleRemoveFromCart(product)} className="btn btn-xs">Delete</button>
                   </td>
                   <td>
                     <Link to="/dashboard/checkout">

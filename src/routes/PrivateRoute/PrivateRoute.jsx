@@ -6,13 +6,16 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { auth } from "../../firebase/firebase.config";
 import { setUser, toggleLoading } from "../../redux/features/user/userSlice";
+import { useSaveTokenMutation } from "../../redux/features/auth/authApi";
+// import toast, { Toaster } from "react-hot-toast";
 
 const PrivateRoute = ({ children }) => {
   const { pathname } = useLocation();
   const { email, isLoading } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
+  const [tokenData, { data }] = useSaveTokenMutation();
 
-//For user sate persistence using onAuthStateChanged firebase function method and toggle loading after user signed up
+  //For user sate persistence using onAuthStateChanged firebase function method and toggle loading after user signed up
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -25,11 +28,25 @@ const PrivateRoute = ({ children }) => {
         );
         // console.log(user);
         dispatch(toggleLoading(false));
+        tokenData(email);
       } else {
         dispatch(toggleLoading(false));
       }
     });
   }, [dispatch]);
+
+  useEffect(() => {
+    // Post and save token
+    if (data) {
+      localStorage.setItem("access_token", data?.token);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (!email) {
+      localStorage.removeItem("access_token");
+    }
+  }, [email]);
 
   if (isLoading) {
     return <Loader />;

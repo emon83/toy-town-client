@@ -19,7 +19,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const { isLoading, email, name, photoURL:imgUrl, isError, error } = useSelector(
+  const { isLoading, email, name, photoURL:imageUrl, isError, error } = useSelector(
     (state) => state.userSlice
   );
   const [saveUser, { data, error: userError }] = useSaveUserMutation();
@@ -97,17 +97,17 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (!isLoading && email && name && imgUrl) {
+    if (!isLoading && email && name && imageUrl) {
       // Save user data to the database
       const userData = {
         name,
         email,
-        imgUrl,
+        imageUrl,
       };
       
       saveUser({ userData, email });
     }
-  }, [isLoading, email, name, imgUrl, saveUser]);
+  }, [isLoading, email, name, saveUser]);
 
   return (
     <div className="md:flex justify-center items-center md:h-[100vh] bg-[#caf0f8]">

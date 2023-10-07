@@ -1,29 +1,25 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import { RxCross1 } from "react-icons/rx";
 import { useSelector } from "react-redux";
-import { useGetCartProductsQuery } from "../../../redux/features/products/productsApi";
+import { useDeleteCartProductMutation, useGetCartProductsQuery, usePaymentProductMutation } from "../../../redux/features/products/productsApi";
 import { useForm } from "react-hook-form";
-//import PaymentModal from "../../../components/Dashboard/Payment/PaymentModal";
-import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const { cartProduct } = useSelector((state) => state.cartProductSlice);
   const {name, email } = useSelector((state) => state.userSlice);
   const { data: cartProducts } = useGetCartProductsQuery(email);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const closeModal = () => {
-      setIsOpen(false);
-    };
+  const [savePaymentProduct] = usePaymentProductMutation();
+  const [deleteCartProduct] = useDeleteCartProductMutation();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  
   let product;
   if (cartProducts) {
     [product] = cartProducts?.filter(
@@ -31,8 +27,27 @@ const Checkout = () => {
     );
   }
 
+  const onSubmit = (data) => {
+    const productData = {
+      ...data,
+      product_name: product.product_name,
+      product_img: product.product_img,
+      product_id: product.productId,
+      customer_img: product.customer_img,
+      price: product?.price + 19,
+      isPurchase: true,
+    }
+    //Save product in database
+    savePaymentProduct(productData);
+    toast.success("Product Purchase successfully")
+
+    //remove product from cart
+    deleteCartProduct(product._id);
+    navigate('/dashboard/my-cart')
+  };
   return (
     <>
+    <Toaster/>
       <h4 className="text-2xl text-center my-4 uppercase">Checkout</h4>
       {/* product content */}
       {cartProducts && cartProducts !== undefined && product && (
@@ -171,7 +186,6 @@ const Checkout = () => {
             value="Place Order"
             className="btn btn-sm sm:btn-md btn-color border-none rounded-3xl w-40"
           />
-          {/* <PaymentModal product={product} isOpen={isOpen} closeModal={closeModal}/> */}
         </form>
       </div>
     </>

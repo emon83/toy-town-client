@@ -10,11 +10,13 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase/firebase.config";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/features/user/userSlice";
+import { useGetUserQuery } from "../../../redux/features/user/userApi";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const { email } = useSelector((state) => state.userSlice);
+  const {data:user} = useGetUserQuery(email);
   const { theme, themeSwitchHandler } = useTheme(); // for using light and dark themes
 
   useEffect(() => {
@@ -74,7 +76,11 @@ const Navbar = () => {
 
           <li>
             <NavLink
-              to="/dashboard"
+              to={user?.role === 'admin'
+              ? "/dashboard/admin-home"
+              : user?.role === 'seller'
+              ? "/dashboard/seller-home"
+              : "/dashboard/my-cart"}
               aria-label="DashBoard"
               title="DashBoard"
               className={({ isActive }) => (isActive ? "active" : "default")}
@@ -170,17 +176,6 @@ const Navbar = () => {
                     </li>
                     <li>
                       <Link
-                        to="/blog"
-                        aria-label="Blog"
-                        title="Blog"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Blog
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link
                         to="/pricing"
                         aria-label="Pricing"
                         title="Pricing"
@@ -192,7 +187,11 @@ const Navbar = () => {
 
                     <li>
                       <Link
-                        to="/dashboard"
+                         to={user?.role === 'admin'
+                         ? "/dashboard/admin-home"
+                         : user?.role === 'seller'
+                         ? "/dashboard/seller-home"
+                         : "/dashboard/my-cart"}
                         aria-label="DashBoard"
                         title="DashBoard"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"

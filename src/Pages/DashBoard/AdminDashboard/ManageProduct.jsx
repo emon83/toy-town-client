@@ -1,11 +1,19 @@
-import { useGetProductsQuery } from "../../../redux/features/products/productsApi";
+import toast, { Toaster } from "react-hot-toast";
+import { useDeleteProductMutation, useGetProductsQuery } from "../../../redux/features/products/productsApi";
 
 
 const ManageProduct = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
+
+  const handleDeleteProduct =(productId)=> {
+    deleteProduct(productId);
+    toast.success("Product deleted successfully")
+  }
 
   return (
     <div>
+      <Toaster/>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -43,11 +51,11 @@ const ManageProduct = () => {
                 <td>{product?.seller_email}</td>
                 <td>{product?.quantity}</td>
                 <td>{product?.price}</td>
-                <td>approved</td>
+                <td>{product?.status === 'pending' ? 'pending' : 'approved'}</td>
                 <td>
                   <div className="flex items-center gap-1">
                     <button className="btn btn-xs">Approved</button>
-                    <button className="btn btn-xs">Delete</button>
+                    <button onClick={()=> handleDeleteProduct(product._id)} className="btn btn-xs">Delete</button>
                     <button className="btn btn-xs">Update</button>
                   </div>
                 </td>
