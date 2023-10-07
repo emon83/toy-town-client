@@ -9,13 +9,16 @@ const userApi = baseApi.injectEndpoints({
         body: userData,
       }),
     }),
+
     getUsers: builder.query({
       query: () => "/users",
       providesTags: ["Users"],
     }),
+
     getUser: builder.query({
       query: (email) => `/users/${email}`,
     }),
+
     makeUser: builder.mutation({
       query: (id) => ({
         url: `/users/user/${id}`,
@@ -23,6 +26,7 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Users"],
     }),
+
     makeSeller: builder.mutation({
       query: (id) => ({
         url: `/users/seller/${id}`,
@@ -42,6 +46,7 @@ const userApi = baseApi.injectEndpoints({
       //   },
       // },
     }),
+
     makeAdmin: builder.mutation({
       query: (id) => ({
         url: `/users/admin/${id}`,
@@ -49,6 +54,7 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Users"],
     }),
+    
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `/users/user/${id}`,

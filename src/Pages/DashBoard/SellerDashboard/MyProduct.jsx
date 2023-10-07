@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
-import { useGetProductsByEmailQuery } from "../../../redux/features/products/productsApi";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import { useDeleteProductMutation, useGetProductsByEmailQuery } from "../../../redux/features/products/productsApi";
+import toast, { Toaster } from "react-hot-toast";
+import { useState } from "react";
+import UpdateProductModal from "../../../components/Dashboard/UpdateProduct/UpdateProductModal";
 
 const MyProduct = () => {
   const { email } = useSelector((state) => state.userSlice);
@@ -9,11 +11,22 @@ const MyProduct = () => {
     isLoading,
     error,
   } = useGetProductsByEmailQuery(email);
+  const [deleteProduct] = useDeleteProductMutation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => {
+      setIsOpen(false);
+    };
+
+  const handleDeleteProduct =(productId)=> {
+    deleteProduct(productId);
+    toast.success("Product deleted successfully")
+  }
 
   console.log(myProducts);
-  console.log(email);
   return (
     <>
+    <Toaster/>
       <h6 className="text-2xl text-center my-4 uppercase">My Product</h6>
       <div className="overflow-x-auto">
         <table className="table">
@@ -21,13 +34,13 @@ const MyProduct = () => {
             <tr>
               <th>SL</th>
               <th>Product Name</th>
+              <th>Seller Name</th>
               <th>Product Image</th>
               <th>Category</th>
               <th>Price</th>
               <th>Quantity</th>
               <th>Status</th>
               <th>Action</th>
-              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -37,6 +50,7 @@ const MyProduct = () => {
                 <tr className="text-center" key={index}>
                   <th>{index + 1}</th>
                   <td>{product?.product_name}</td>
+                  <td>{product?.seller}</td>
                   <td>
                     <div className="flex items-center space-x-3">
                       <div className="avatar">
@@ -49,7 +63,7 @@ const MyProduct = () => {
                       </div>
                     </div>
                   </td>
-                  <td>{product?.product_category}</td>
+                  <td>{product?.category}</td>
                   <td>${product?.price}</td>
                   <td>{product?.quantity}</td>
                   <td>
@@ -57,14 +71,13 @@ const MyProduct = () => {
                   </td>
                   <td>
                     <div className="flex items-center gap-1">
-                      <button className="btn btn-xs">Delete</button>
-                      <button className="btn btn-xs">Update</button>
+                      <button onClick={()=> handleDeleteProduct(product._id)} className="btn btn-xs">Delete</button>
+                      <button onClick={() => setIsOpen(true)} className="btn btn-xs">Update</button>
+                      {/* Update Modal Here */}
+                      <UpdateProductModal product={product} isOpen={isOpen} closeModal={closeModal}/>
                     </div>
                   </td>
                   <td>
-                    <button>
-                      <RiDeleteBin6Line className="text-red-500 w-5 h-5 mx-auto" />
-                    </button>
                   </td>
                 </tr>
               ))}

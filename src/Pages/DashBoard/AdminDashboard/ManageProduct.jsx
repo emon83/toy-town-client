@@ -1,14 +1,27 @@
 import toast, { Toaster } from "react-hot-toast";
-import { useDeleteProductMutation, useGetProductsQuery } from "../../../redux/features/products/productsApi";
+import { useApproveProductMutation, useDeleteProductMutation, useGetProductsQuery } from "../../../redux/features/products/productsApi";
+import UpdateProductModal from "../../../components/Dashboard/UpdateProduct/UpdateProductModal";
+import { useState } from "react";
 
 
 const ManageProduct = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
   const [deleteProduct] = useDeleteProductMutation();
+  const [approveProduct] = useApproveProductMutation()
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => {
+      setIsOpen(false);
+    };
 
   const handleDeleteProduct =(productId)=> {
     deleteProduct(productId);
     toast.success("Product deleted successfully")
+  }
+
+  const handleApproveProduct =(productId)=> {
+    approveProduct(productId)
+    toast.success("Product approve successfully")
   }
 
   return (
@@ -54,9 +67,10 @@ const ManageProduct = () => {
                 <td>{product?.status === 'pending' ? 'pending' : 'approved'}</td>
                 <td>
                   <div className="flex items-center gap-1">
-                    <button className="btn btn-xs">Approved</button>
+                    <button onClick={() => handleApproveProduct(product._id)} className="btn btn-xs">Approved</button>
                     <button onClick={()=> handleDeleteProduct(product._id)} className="btn btn-xs">Delete</button>
-                    <button className="btn btn-xs">Update</button>
+                    <button onClick={() => setIsOpen(true)} className="btn btn-xs">Update</button>
+                    <UpdateProductModal product={product} isOpen={isOpen} closeModal={closeModal}/>
                   </div>
                 </td>
               </tr>

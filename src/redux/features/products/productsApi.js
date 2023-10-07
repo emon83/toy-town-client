@@ -51,6 +51,18 @@ const productApi = baseApi.injectEndpoints({
       invalidatesTags: ["Product"],
     }),
 
+    updateProduct: builder.mutation({
+      query: ({ id, productData }) => {
+        //console.log(id, productData); // Add your console.log here
+        return {
+          url: `/updateProduct/${id}`,
+          method: "PATCH",
+          body: productData,
+        };
+      },
+      invalidatesTags: ["Product"],
+    }),
+
     saveCartProduct: builder.mutation({
       query: (product) => ({
         url: "/cartProduct",
@@ -77,6 +89,13 @@ const productApi = baseApi.injectEndpoints({
     getPaymentProduct: builder.query({
       query: (email) => `/payment/${email}`,
     }),
+    approveProduct: builder.mutation({
+      query: (id) => ({
+        url: `/approveProduct/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Product"],
+    })
   }),
 });
 
@@ -84,6 +103,7 @@ export const {
   useSaveProductMutation,
   useGetProductsQuery,
   useGetProductsByCategoryQuery,
+  useUpdateProductMutation,
   useDeleteProductMutation,
   useGetProductsByIdQuery,
   useSaveCartProductMutation,
@@ -92,4 +112,5 @@ export const {
   usePaymentProductMutation,
   useGetPaymentProductQuery,
   useGetProductsByEmailQuery,
+  useApproveProductMutation,
 } = productApi;
