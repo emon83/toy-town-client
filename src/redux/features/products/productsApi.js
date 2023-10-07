@@ -31,6 +31,10 @@ const productApi = baseApi.injectEndpoints({
       query: (id) => `/productDetails/${id}`,
     }),
 
+    getProductsByEmail: builder.query({
+      query: (email) => `/myProducts/${email}`,
+    }),
+
     deleteProduct: builder.mutation({
       query: (id) => ({
         url: `/deleteProduct/${id}`,
@@ -87,4 +91,5 @@ export const {
   useDeleteCartProductMutation,
   usePaymentProductMutation,
   useGetPaymentProductQuery,
+  useGetProductsByEmailQuery,
 } = productApi;
