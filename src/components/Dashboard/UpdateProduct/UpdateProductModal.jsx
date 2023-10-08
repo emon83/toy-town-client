@@ -9,8 +9,8 @@ import { useUpdateProductMutation } from "../../../redux/features/products/produ
 const UpdateProductModal = ({ product, isOpen, closeModal }) => {
   const { email } = useSelector((state) => state.userSlice);
   const { data: user } = useGetUserQuery(email);
-  const [updateProduct] = useUpdateProductMutation();
-
+  const [updateProduct, {data:updateData, error}] = useUpdateProductMutation();
+  console.log(updateData, error);
   const {
     register,
     handleSubmit,
@@ -51,9 +51,13 @@ const UpdateProductModal = ({ product, isOpen, closeModal }) => {
           ...(user.role === "seller" ? { status: "pending" } : {}),
           reviews: [],
         };
+        const options = {
+          id: product._id,
+          updateData: updatedFormData
+        };
 
         // Update product
-        updateProduct({ id: product._id, productData: updatedFormData });
+        updateProduct(options);
 
         toast.success("Product updated successfully");
         closeModal();

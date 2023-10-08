@@ -52,14 +52,12 @@ const productApi = baseApi.injectEndpoints({
     }),
 
     updateProduct: builder.mutation({
-      query: ({ id, productData }) => {
-        //console.log(id, productData); // Add your console.log here
-        return {
+      query: ({ id, productData }) => ({
+      
           url: `/updateProduct/${id}`,
           method: "PATCH",
           body: productData,
-        };
-      },
+    }),
       invalidatesTags: ["Product"],
     }),
 
@@ -95,7 +93,7 @@ const productApi = baseApi.injectEndpoints({
         method: "PATCH",
       }),
       invalidatesTags: ["Product"],
-    })
+    }),
   }),
 });
 

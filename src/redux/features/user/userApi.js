@@ -19,6 +19,15 @@ const userApi = baseApi.injectEndpoints({
       query: (email) => `/users/${email}`,
     }),
 
+    updateUser: builder.mutation({
+      query: ({email, userData}) => ({
+        url: `/user/${email}`,
+        method: "PUT",
+        body: userData,
+      }),
+      invalidatesTags: ["Users"],
+    }),
+
     makeUser: builder.mutation({
       query: (id) => ({
         url: `/users/user/${id}`,
@@ -69,6 +78,7 @@ export const {
   useSaveUserMutation,
   useGetUsersQuery,
   useGetUserQuery,
+  useUpdateUserMutation,
   useMakeUserMutation,
   useMakeSellerMutation,
   useMakeAdminMutation,
