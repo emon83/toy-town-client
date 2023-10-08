@@ -11,6 +11,7 @@ import {
 } from "../../redux/features/products/productsApi";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { AiFillHeart } from "react-icons/ai";
 
 const ProductDetails = () => {
   const [activeComponent, setActiveComponent] = useState("ProductDescription"); //by default component uses active component
@@ -60,34 +61,34 @@ const ProductDetails = () => {
   };
 
   return (
-    <>
+    <div className="my-container mb-10">
       <div className="md:flex items-center gap-10">
-        <div className="">
-          <img src={productData?.img} alt="" />
+        <div className="md:w-[45%]">
+          <img className="" src={productData?.img} alt="Product Image" />
         </div>
-        <div>
-          <h2>{productData?.product_name}</h2>
-          <h4>${productData?.price}</h4>
-          <p>{productData?.description}</p>
+        <div className="md:w-[55%]">
+          <h2 className="text-4xl font-medium">{productData?.product_name}</h2>
+          <h4 className="text-2xl my-2">${productData?.price}</h4>
+          <p className="text-gray-600">{productData?.description}</p>
 
           <button
             onClick={() => saveCartProductToDb(productData)}
-            className="btn btn-sm"
+            className="btn btn-sm btn-color border-none mt-4"
           >
             Add To Cart
           </button>
 
-          <div className="flex items-center gap-1">
-            <p>love</p>
-            <p>Add To Wishlist</p>
+          <div className="flex items-center gap-1 my-5">
+            <AiFillHeart className="text-sky-500 text-xl"/>
+            <p className="text-sm uppercase">Add To Wishlist</p>
           </div>
-          <h6>SKU: {productData?.SKU}</h6>
-          <h6>Category: {productData?.product_category}</h6>
+          <h6 className="uppercase">SKU: {productData?.SKU}</h6>
+          <h6 className="my-1">Category: {productData?.product_category}</h6>
           <div className="flex items-center gap-1">
             <p>Tags:</p>
             <div className="flex items-center gap-1">
               {productData?.tags.map((item, index) => (
-                <p key={index}>{item}</p>
+                <p className="py-1 px-3 border rounded-sm text-sm uppercase" key={index}>{item}</p>
               ))}
             </div>
           </div>
@@ -95,14 +96,14 @@ const ProductDetails = () => {
       </div>
 
       <div className="my-10">
-        <div className="flex items-center justify-center gap-4">
-          <button onClick={() => handleButtonClick("ProductDescription")}>
+        <div className="flex items-center justify-center gap-8">
+          <button className="text-xl font-semibold" onClick={() => handleButtonClick("ProductDescription")}>
             Description
           </button>
-          <button onClick={() => handleButtonClick("ProductInformation")}>
+          <button className="text-xl font-semibold" onClick={() => handleButtonClick("ProductInformation")}>
             Additional Information
           </button>
-          <button onClick={() => handleButtonClick("ProductReview")}>
+          <button className="text-xl font-semibold" onClick={() => handleButtonClick("ProductReview")}>
             Review
           </button>
         </div>
@@ -130,7 +131,7 @@ const ProductDetails = () => {
             ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

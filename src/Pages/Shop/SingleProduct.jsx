@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const SingleProduct = ({ product }) => {
   return (
-    <div className="grid place-items-center border rounded-3xl text-center group">
+    <div className="grid place-items-center border rounded-3xl text-center group h-[450px]">
       <Link to={`product-details/${product._id}`}>
-        <img src={product.img} alt="Product Image" />
+        <img className="h-[320px]" src={product.img} alt="Product Image" />
         <h6 className="uppercase text-sm text-gray-600 mt-4">
           {product.product_category}
         </h6>
