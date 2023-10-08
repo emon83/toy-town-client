@@ -53,11 +53,10 @@ const productApi = baseApi.injectEndpoints({
 
     updateProduct: builder.mutation({
       query: ({ id, productData }) => ({
-      
-          url: `/updateProduct/${id}`,
-          method: "PATCH",
-          body: productData,
-    }),
+        url: `/updateProduct/${id}`,
+        method: "PATCH",
+        body: productData,
+      }),
       invalidatesTags: ["Product"],
     }),
 
@@ -67,6 +66,18 @@ const productApi = baseApi.injectEndpoints({
         method: "POST",
         body: product,
       }),
+    }),
+
+    saveReviewProduct: builder.mutation({
+      query: (product) => ({
+        url: "/reviewProduct",
+        method: "POST",
+        body: product,
+      }),
+    }),
+
+    getReviewProduct: builder.query({
+      query: (id) => `/reviewProduct/${id}`,
     }),
 
     getCartProducts: builder.query({
@@ -111,4 +122,6 @@ export const {
   useGetPaymentProductQuery,
   useGetProductsByEmailQuery,
   useApproveProductMutation,
+  useSaveReviewProductMutation,
+  useGetReviewProductQuery,
 } = productApi;
