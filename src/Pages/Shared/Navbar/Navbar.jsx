@@ -91,7 +91,7 @@ const Navbar = () => {
         </ul>
         <ul className="items-center hidden space-x-8 lg:flex">
           {/* For dark and light mood */}
-          <div className="-mr-4">
+          {/* <div className="-mr-4">
             {theme.mode == "dark" ? (
               <BsCloudSunFill
                 title="Make Light"
@@ -105,7 +105,7 @@ const Navbar = () => {
                 onClick={() => themeSwitchHandler()}
               />
             )}
-          </div>
+          </div> */}
           {email ? (
             <>
               <UserModal handleLogout={handleLogout} />
@@ -202,7 +202,7 @@ const Navbar = () => {
 
                     <li>
                       {/* For dark and light mood */}
-                      <div className="-mr-4">
+                      {/* <div className="-mr-4">
                         {theme.mode == "dark" ? (
                           <BsCloudSunFill
                             title="Make Light"
@@ -216,7 +216,7 @@ const Navbar = () => {
                             onClick={() => themeSwitchHandler()}
                           />
                         )}
-                      </div>
+                      </div> */}
                     </li>
                     {email ? (
                       <li>

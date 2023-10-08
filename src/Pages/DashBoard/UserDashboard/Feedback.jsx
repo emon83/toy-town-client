@@ -40,13 +40,14 @@ const Feedback = () => {
   };
   return (
     <div className="">
-      <h6 className="text-xl uppercase my-4 text-center">Feedback Us</h6>
+      <h6 className="text-3xl uppercase md:my-10 mt-4 mb-4  text-center">Feedback Us</h6>
       <div style={{ maxWidth: 180, width: '100%' ,margin: "0 auto" }}>
         <Rating value={rating} onChange={setRating}/>
         <div>
           <p className="text-center mb-6">{`${getRating(rating)}`}</p>
         </div>
     </div>
+      <div className="w-full md:w-[60vw] mx-auto">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="text-xs sm:text-sm">
@@ -95,6 +96,7 @@ const Feedback = () => {
         />
         {/* <PaymentModal product={product} isOpen={isOpen} closeModal={closeModal}/> */}
       </form>
+      </div>
     </div>
   );
 };
