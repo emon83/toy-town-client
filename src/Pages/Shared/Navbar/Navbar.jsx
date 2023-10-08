@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logos/logo.png";
-import { BsCloudSunFill, BsFillCloudMoonFill } from "react-icons/bs";
+// import { BsCloudSunFill, BsFillCloudMoonFill } from "react-icons/bs";
 import UserModal from "./UserModal";
-import { useTheme } from "../../../providers/ThemeProvider";
+// import { useTheme } from "../../../providers/ThemeProvider";
 import { AiOutlineMenu } from "react-icons/ai";
 import toast, { Toaster } from "react-hot-toast";
 import { signOut } from "firebase/auth";
@@ -17,11 +17,11 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { email } = useSelector((state) => state.userSlice);
   const {data:user} = useGetUserQuery(email);
-  const { theme, themeSwitchHandler } = useTheme(); // for using light and dark themes
+  // const { theme, themeSwitchHandler } = useTheme(); // for using light and dark themes
 
-  useEffect(() => {
-    document.querySelector("html").setAttribute("data-theme", theme.mode);
-  }, [theme]);
+  // useEffect(() => {
+  //   document.querySelector("html").setAttribute("data-theme", theme.mode);
+  // }, [theme]);
 
   const handleLogout = () => {
     signOut(auth);
