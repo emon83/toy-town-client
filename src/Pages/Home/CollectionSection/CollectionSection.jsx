@@ -20,7 +20,7 @@ const collectionData = [
 const CollectionSection = () => {
   return (
     <div className="mt-28 w-full">
-      <div className="md:flex items-center justify-center xl:gap-40 lg:gap-32 gap-10 mx-auto">
+      <div className="md:flex items-center justify-center xl:gap-20 lg:gap-16 gap-2 mx-auto px-2 sm:px-4">
         {collectionData &&
           collectionData.length > 0 &&
           collectionData?.map((collection) => (

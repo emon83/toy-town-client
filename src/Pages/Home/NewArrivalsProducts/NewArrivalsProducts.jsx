@@ -13,7 +13,7 @@ const NewArrivalsProducts = () => {
       <p className="text-lg primary-font mt-4 mb-8 text-gray-600">
         Consectetur adipiscing elit ut aliquam duis convalli <br /> tellus id interdum ve.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 px-6 sm:px-8 md:px-0">
         {newArrivalsProducts?.map((product) => (
           <NewSingleProduct key={product._id} product={product} />
         ))}

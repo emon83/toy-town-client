@@ -60,14 +60,13 @@ const CategorySection = () => {
   return (
     <div className="my-container">
       <Swiper
-        spaceBetween={30}
-        slidesPerView={8}
+        spaceBetween={100}
+        slidesPerView={7}
         centeredSlides={true}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
         }}
-        // navigation={true}
         modules={[Autoplay, Navigation]}
         className="mySwiper"
       >
@@ -75,9 +74,9 @@ const CategorySection = () => {
           categoryData.map((category, index) => (
             <SwiperSlide key={index}>
               <Link to="/shop">
-                <div className="grid place-items-center cursor-pointer">
-                  <img src={category.img} alt="" />
-                  <p>{category.c_name}</p>
+                <div className="grid place-items-center cursor-pointer w-32 h-26">
+                  <img className="w-16 sm:w-20 md:w-28 lg:w-32" src={category.img} alt="Category Img" />
+                  <p className="mt-2">{category.c_name}</p>
                 </div>
               </Link>
             </SwiperSlide>

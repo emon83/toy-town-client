@@ -69,13 +69,13 @@ const GallerySection = () => {
           Check back often and enjoy.
         </h6>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 mt-10 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 mt-10 gap-4 px-4 sm:px-6">
         {galleryImgData?.map((imgData, index) => (
           <div className="group" key={index}>
             <img
-              className="group-hover:scale-105 transition-transform rounded-sm"
+              className="group-hover:scale-105 transition-transform rounded-md"
               src={imgData.img}
-              alt=""
+              alt="Gallery Image"
             />
           </div>
         ))}
