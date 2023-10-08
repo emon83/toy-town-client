@@ -46,43 +46,43 @@ const Checkout = () => {
     deleteCartProduct(product._id);
     navigate('/dashboard/my-cart')
   };
-  console.log(product);
+
   return (
     <>
     <Toaster/>
       <h4 className="text-2xl text-center my-4 uppercase">Checkout</h4>
       {/* product content */}
       {cartProducts && cartProducts !== undefined && product && (
-        <>
-          <h6 className="text-lg font-semibold uppercase my-4">Product Info</h6>
+        <div className="my-10 hidden sm:block">
+          <h6 className="text-lg font-semibold uppercase mb-6">Product Info</h6>
           <div className="flex items-center justify-between">
-            <RxCross1 className="mt-4 text-lg" />
+            <RxCross1 className="mt-4 md:ml-2 cursor-pointer text-xl" />
             <div className="flex flex-col items-center">
-              <h6>product</h6>
-              <div className="flex items-center gap-4">
-                <img className="w-24" src={product.img} alt="" />
-                <p>{product?.name}</p>
+              <h6 className="text-xl uppercase text-center mb-3">product</h6>
+              <div className="flex items-center justify-center gap-6 text-center">
+                <img className="w-24 rounded-md" src={product.img} alt="My Product" />
+                <p className="text-xl">{product?.name}</p>
               </div>
             </div>
             <div className="flex flex-col gap-8 -mt-8">
-              <p>price</p>
-              <p>${product?.price}</p>
+              <p className="text-xl uppercase text-center mb-3">price</p>
+              <p className="text-center">${product?.price}</p>
             </div>
             <div className="flex flex-col gap-8 -mt-8">
-              <p>Quantity</p>
-              <p>1</p>
+              <p className="text-xl uppercase text-center mb-3">Quantity</p>
+              <p className="text-center">1</p>
             </div>
             <div className="flex flex-col gap-8 -mt-8">
-              <p>Subtotal</p>
-              <p>${product?.price}</p>
+              <p className="text-xl uppercase text-center mb-3">Subtotal</p>
+              <p className="text-center">${product?.price}</p>
             </div>
           </div>
-        </>
+        </div>
       )}
       <div className="my-10">
         <h6 className="text-lg font-semibold uppercase">Billing & Shipping</h6>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3">
             <div>
               <label className="text-xs sm:text-sm">Name</label>
               <input defaultValue={name} {...register("userName", { required: true })} />
@@ -161,24 +161,24 @@ const Checkout = () => {
         {/* Your order part */}
           <>
                 <h6 className="text-lg font-semibold uppercase mt-10 mb-2">Your Order</h6>
-                <p className="cursor-pointer">Have Coupon?</p>
+                <p className="cursor-pointer text-color mb-8">Have Coupon?</p>
                 <div className="lg:w-1/2">
-                    <p>Choose Shipping Method</p>
+                    <h6 className="uppercase text-lg font-semibold mb-4">Choose Shipping Method</h6>
                     <div className="flex items-center justify-between" >
-                        <h6>Product</h6>
-                        <h6>SubTotal</h6>
+                        <h6 className="uppercase font-semibold mb-3">Product</h6>
+                        <h6 className="uppercase font-semibold mb-3">SubTotal</h6>
                     </div>
                     <div className="flex items-center justify-between">
                         <p>{product?.name}</p>
                         <p>${product?.price}</p>
                     </div>
                     <div className="flex items-center justify-between border-b-2 mb-2">
-                        <p>Shipping Coast</p>
-                        <p className="mb-2">$19</p>
+                        <p className="">Shipping Coast</p>
+                        <p className="mb-4">$19</p>
                     </div>
                     <div className="flex items-center justify-between">
-                        <p>Grand Total</p>
-                        <p>${product?.price + 19}</p>
+                        <p className="text-color uppercase font-semibold">Grand Total</p>
+                        <p className="text-color font-semibold">${product?.price + 19}</p>
                     </div>
                 </div>
           </>
@@ -186,7 +186,7 @@ const Checkout = () => {
           <input
             type="submit"
             value="Place Order"
-            className="btn btn-sm sm:btn-md btn-color border-none rounded-3xl w-40"
+            className="btn btn-sm sm:btn-md btn-color border-none rounded-3xl w-40 mt-10"
           />
         </form>
       </div>

@@ -2,7 +2,7 @@
 const PaymentHistory = () => {
     return (
         <div>
-            Payment History
+            <h2 className="text-4xl uppercase font-semibold text-center mt-[35vh] font-sans">Payment History</h2>
         </div>
     );
 };

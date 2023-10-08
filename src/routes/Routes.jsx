@@ -2,16 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home/Home";
-import Blog from "../Pages/Blog/Blog";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
-import AllToys from "../Pages/AllToys/AllToys";
-import MyToy from "../Pages/MyToy/MyToy";
-import AddAToy from "../Pages/AddAToy/AddAToy";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import ToyDetails from "../Pages/ToyDetails/ToyDetails";
-import SingleShopCategory from "../Pages/SingleShopCategory/SingleShopCategory";
-import UpdateToy from "../Pages/UpdateToy/UpdateToy";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 import DashboardLayout from "../Layout/DashBoardLayout";
 import MyCart from "../Pages/DashBoard/UserDashboard/MyCart";
@@ -29,6 +22,7 @@ import ManageProduct from "../Pages/DashBoard/AdminDashboard/ManageProduct";
 import Shop from "../Pages/Shop/Shop";
 import Pricing from "../Pages/Pricing/Pricing";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import BlogDetails from "../Pages/BlogDetails/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -38,82 +32,49 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <PrivateRoute><Home /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/shop",
-        element: <PrivateRoute><Shop /></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <Shop />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/product-details/:id",
-        element: <PrivateRoute><ProductDetails /></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/shop/product-details/:id",
-        element: <PrivateRoute><ProductDetails /></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/blog-details/:id",
+        element: (
+          <PrivateRoute>
+            <BlogDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/pricing",
-        element: <PrivateRoute><Pricing /></PrivateRoute>
-      },
-      {
-        path: "/categoryToyDetails/:id",
         element: (
           <PrivateRoute>
-            <SingleShopCategory />
-          </PrivateRoute>
-        ),
-        loader: ({ params }) =>
-          fetch(
-            `https://toy-town-server-ashen.vercel.app/allCategoryProducts/${params.id}`
-          ),
-      },
-      {
-        path: "/allToys",
-        element: <PrivateRoute><AllToys /></PrivateRoute>,
-      },
-      {
-        path: "/toy/:id",
-        element: (
-          <PrivateRoute>
-            <ToyDetails />
-          </PrivateRoute>
-        ),
-        loader: ({ params }) =>
-          fetch(
-            `https://toy-town-server-ashen.vercel.app/toyDetails/${params.id}`
-          ),
-      },
-      {
-        path: "/blog",
-        element: <Blog />,
-      },
-      {
-        path: "/myToy",
-        element: (
-          <PrivateRoute>
-            <MyToy />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/myToy/:id",
-        element: (
-          <PrivateRoute>
-            <UpdateToy />
-          </PrivateRoute>
-        ),
-        loader: ({ params }) =>
-          fetch(
-            `https://toy-town-server-ashen.vercel.app/toyDetails/${params.id}`
-          ),
-      },
-
-      {
-        path: "/addAToy",
-        element: (
-          <PrivateRoute>
-            <AddAToy />
+            <Pricing />
           </PrivateRoute>
         ),
       },
@@ -127,7 +88,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/user-profile",
-        element: <PrivateRoute><UserProfile /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -152,6 +117,7 @@ const router = createBrowserRouter([
         path: "/dashboard/payment",
         element: <Payment />,
       },
+      // TODO: 
       {
         path: "/dashboard/payment-history",
         element: <PaymentHistory />,

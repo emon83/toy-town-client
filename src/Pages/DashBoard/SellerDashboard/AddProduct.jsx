@@ -53,12 +53,12 @@ const AddProduct = () => {
   return (
     <div>
       <Toaster/>
-      <h2 className="text-2xl primary-font text-center">Add A Toy Section</h2>
+      <h2 className="text-2xl primary-font text-center mt-4">Add A Toy Section</h2>
       <p className="text-base secondary-font my-6 text-gray-600 text-center italic">
         Welcome to Add-A-Toy, your one-stop destination for a world <br /> of
         play and wonder. Explore our vast collection of toys
       </p>
-      <div className="border-2 p-10 rounded-xl">
+      <div className="border-2 p-4 sm:p-6 md:p-10 rounded-xl">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="sm:flex items-center sm:gap-2 lg:gap-8">
             <div className="w-full">
@@ -67,8 +67,9 @@ const AddProduct = () => {
                 type="text"
                 className="italic"
                 placeholder="Product Name"
-                {...register("product_name")}
+                {...register("product_name", { required: true })}
               />
+              {errors.product_name && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
 
             <div className="w-full">
@@ -77,11 +78,12 @@ const AddProduct = () => {
                 required
                 type="file"
                 accept="image/*"
-                {...register("img")}
+                {...register("img", { required: true })}
               />
+              {errors.img && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
           </div>
-          <div className="flex items-center gap-2 lg:gap-8">
+          <div className="sm:flex items-center gap-2 lg:gap-8">
             <div className="w-full">
               <label>Product Category</label>
               <input
@@ -90,6 +92,7 @@ const AddProduct = () => {
                 placeholder="Product Category"
                 {...register("product_category", { required: true })}
               />
+              {errors.product_category && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
 
             <div className="w-full">
@@ -100,9 +103,10 @@ const AddProduct = () => {
                 placeholder="Product quantity"
                 {...register("quantity", { required: true })}
               />
+              {errors.quantity && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
           </div>
-          <div className="flex items-center gap-2 lg:gap-8">
+          <div className="sm:flex items-center gap-2 lg:gap-8">
             <div className="w-full">
               <label>Tags</label>
               <input
@@ -111,6 +115,7 @@ const AddProduct = () => {
                 placeholder="Tags"
                 {...register("tags", { required: true })}
               />
+              {errors.quantity && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
 
             <div className="w-full">
@@ -119,7 +124,7 @@ const AddProduct = () => {
                 type="text"
                 className="italic"
                 placeholder="Price"
-                {...register("price")}
+                {...register("price", { required: true })}
               />
               {errors.price && (
                 <span className="text-sky-500 text-xs font-semibold">
@@ -128,7 +133,7 @@ const AddProduct = () => {
               )}
             </div>
           </div>
-          <div className="flex items-center gap-2 lg:gap-8">
+          <div className="sm:flex items-center gap-2 lg:gap-8">
             <div className="w-full">
               <label>Variant</label>
               <input
@@ -137,6 +142,7 @@ const AddProduct = () => {
                 placeholder="Variant"
                 {...register("variant", { required: true })}
               />
+              {errors.variant && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
 
             <div className="w-full">
@@ -145,11 +151,12 @@ const AddProduct = () => {
                 type="text"
                 className="italic"
                 placeholder="Color"
-                {...register("color")}
+                {...register("color", { required: true })}
               />
+              {errors.color && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
           </div>
-          <div className="flex items-center gap-2 lg:gap-8">
+          <div className="sm:flex items-center gap-2 lg:gap-8">
             <div className="w-full">
               <label>Material</label>
               <input
@@ -158,6 +165,7 @@ const AddProduct = () => {
                 placeholder="Material"
                 {...register("material", { required: true })}
               />
+              {errors.material && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
 
             <div className="w-full">
@@ -166,11 +174,12 @@ const AddProduct = () => {
                 type="text"
                 className="italic"
                 placeholder="Brand Name"
-                {...register("brand")}
+                {...register("brand", { required: true })}
               />
+              {errors.brand && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
           </div>
-          <div className="flex items-center gap-2 lg:gap-8">
+          <div className="sm:flex items-center gap-2 lg:gap-8">
             <div className="w-full">
               <label>Collection</label>
               <input
@@ -179,6 +188,7 @@ const AddProduct = () => {
                 placeholder="Collection Time"
                 {...register("collection", { required: true })}
               />
+              {errors.collection && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
 
             <div className="w-full">
@@ -187,19 +197,21 @@ const AddProduct = () => {
                 type="text"
                 className="italic"
                 placeholder="Product Weight"
-                {...register("weight")}
+                {...register("weight", { required: true })}
               />
+              {errors.weight && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
           </div>
-          <div className="flex items-center gap-2 lg:gap-8">
+          <div className="sm:flex items-center gap-2 lg:gap-8">
             <div className="w-full">
               <label>Base Type</label>
               <input
                 type="text"
                 className="italic"
                 placeholder="Base Type"
-                {...register("base_type")}
+                {...register("base_type", { required: true })}
               />
+              {errors.base_type && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
 
             <div className="w-full">
@@ -208,11 +220,12 @@ const AddProduct = () => {
                 required
                 type="text"
                 placeholder="Category Name"
-                {...register("category")}
+                {...register("category", { required: true })}
               />
+              {errors.category && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
           </div>
-          <div className="flex items-center gap-2 lg:gap-8">
+          <div className="sm:flex items-center gap-2 lg:gap-8">
             <div className="w-full">
               <label>Seller Name</label>
               <input
@@ -222,6 +235,7 @@ const AddProduct = () => {
                 placeholder="Seller Name"
                 {...register("seller", { required: true })}
               />
+              {errors.seller && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
 
             <div className="w-full">
@@ -230,8 +244,9 @@ const AddProduct = () => {
                 type="text"
                 className="italic"
                 placeholder="Ratings"
-                {...register("rating")}
+                {...register("rating", { required: true })}
               />
+              {errors.rating && <span className="text-sky-500 text-xs">This field is required</span>}
             </div>
           </div>
           <div className="w-full">
@@ -239,15 +254,16 @@ const AddProduct = () => {
             <input
               className="pb-10 italic"
               placeholder="Detail description"
-              {...register("description")}
+              {...register("description", { required: true })}
             />
+            {errors.seller && <span className="text-sky-500 text-xs">This field is required</span>}
           </div>
-          {errors.toyName && <span>This field is required</span>}
+          {errors.rating && <span className="text-sky-500 text-xs">This field is required</span>}
 
           <input
             type="submit"
             value="Add A Product"
-            className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
+            className="btn btn-color border-none btn-block rounded-3xl"
           />
         </form>
       </div>

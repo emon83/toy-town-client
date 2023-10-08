@@ -95,9 +95,11 @@ const productApi = baseApi.injectEndpoints({
       //   },
       // },
     }),
+    
     getPaymentProduct: builder.query({
       query: (email) => `/payment/${email}`,
     }),
+
     approveProduct: builder.mutation({
       query: (id) => ({
         url: `/approveProduct/${id}`,

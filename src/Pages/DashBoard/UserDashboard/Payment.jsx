@@ -2,7 +2,7 @@
 const Payment = () => {
     return (
         <div>
-            Payment            
+            <h2 className="text-4xl uppercase font-semibold text-center mt-[35vh] font-sans">Payment</h2>           
         </div>
     );
 };
