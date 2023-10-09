@@ -9,6 +9,7 @@ import {
   removeFromCart,
 } from "../../../redux/features/products/productSlice";
 import toast, { Toaster } from "react-hot-toast";
+import useTitle from "../../../hooks/useTitle";
 
 const MyCart = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ const MyCart = () => {
     isLoading,
     error,
   } = useGetCartProductsQuery(email);
+
+  // Use tile by custom useTitle Hook
+  useTitle("My Cart");
 
   const handleAddToCart = (product) => {
     dispatch(addToCart({ product_id: product._id }));

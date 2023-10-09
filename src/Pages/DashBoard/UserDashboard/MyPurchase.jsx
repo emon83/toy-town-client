@@ -1,9 +1,12 @@
 import { useSelector } from "react-redux";
 import { useGetPaymentProductQuery } from "../../../redux/features/products/productsApi";
+import useTitle from "../../../hooks/useTitle";
 
 const MyPurchase = () => {
   const { email } = useSelector((state) => state.userSlice);
   const { data: products, isLoading, error } = useGetPaymentProductQuery(email);
+  // Use tile by custom useTitle Hook
+  useTitle("My Purchase");
 
   return (
     <>

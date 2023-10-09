@@ -5,6 +5,7 @@ import { useDeleteCartProductMutation, useGetCartProductsQuery, usePaymentProduc
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../../hooks/useTitle";
 
 const Checkout = () => {
   const { cartProduct } = useSelector((state) => state.cartProductSlice);
@@ -13,6 +14,8 @@ const Checkout = () => {
   const [savePaymentProduct] = usePaymentProductMutation();
   const [deleteCartProduct] = useDeleteCartProductMutation();
   const navigate = useNavigate();
+  // Use tile by custom useTitle Hook
+  useTitle("Checkout");
 
   const {
     register,

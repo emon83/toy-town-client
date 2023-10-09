@@ -1,3 +1,4 @@
+import useTitle from "../../../hooks/useTitle";
 import Banner from "../Banner/Banner";
 import BestSellerProduct from "../BestSellerProduct/BestSellerProduct";
 import BlogSection from "../BlogSection/BlogSection";
@@ -9,6 +10,9 @@ import NewArrivalsProducts from "../NewArrivalsProducts/NewArrivalsProducts";
 // import Newsletter from "../Newsletter/Newsletter";
 
 const Home = () => {
+  // Use tile by custom useTitle Hook
+  useTitle("Home");
+  
   return (
     <>
       <Banner />

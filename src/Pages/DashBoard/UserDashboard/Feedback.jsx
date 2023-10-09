@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { useSaveFeedbackMutation } from "../../../redux/features/feedback/feedbackApi";
+import useTitle from "../../../hooks/useTitle";
+import toast from "react-hot-toast";
 
 function getRating(rating) {
   switch (rating) {
@@ -25,18 +27,23 @@ function getRating(rating) {
 const Feedback = () => {
   const [rating, setRating] = useState(5);
   const { email, photoURL, name } = useSelector((state) => state.userSlice);
-  const [feedbackData, {data, error}] = useSaveFeedbackMutation()
+  const [feedbackData, {data, error}] = useSaveFeedbackMutation();
+  // Use tile by custom useTitle Hook
+  useTitle("Feedback");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
     const feedbackInfo = {
       ...data, email, name, photoURL, rating
     }
     //Save feedback info to DataStore
     feedbackData(feedbackInfo);
+    toast.success('Feedback info saved Successfully');
   };
   return (
     <div className="">

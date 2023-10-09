@@ -29,7 +29,7 @@ const Navbar = () => {
     toast.success("User logout successful");
   };
   return (
-    <div className="px-4 mx-auto h-24">
+    <div className="bg-gray-100 sticky top-0 z-10 bg-transparent backdrop-blur-md px-4 mx-auto h-[85px]">
       <Toaster />
       <div className="relative flex items-center justify-between">
         <Link
@@ -38,7 +38,7 @@ const Navbar = () => {
           title="ToyTown"
           className="inline-flex items-center"
         >
-          <div className="flex items-center justify-center w-40 h-24">
+          <div className="flex items-center justify-center w-40 h-20">
             <img className="w-32" src={logo} alt="" />
           </div>
         </Link>

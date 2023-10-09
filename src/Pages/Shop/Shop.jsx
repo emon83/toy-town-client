@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SingleProduct from "./SingleProduct";
 import { useGetProductsByCategoryQuery } from "../../redux/features/products/productsApi";
+import useTitle from "../../hooks/useTitle";
 
 const Shop = () => {
   const [selectedCategory, setSelectedCategory] = useState("Bed"); // Default category
@@ -9,6 +10,9 @@ const Shop = () => {
     isLoading,
     error,
   } = useGetProductsByCategoryQuery(selectedCategory);
+
+  // Use tile by custom useTitle Hook
+  useTitle("Shop");
 
   const categoryList = [
     "Bed",

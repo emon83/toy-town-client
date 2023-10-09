@@ -12,6 +12,7 @@ import {
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { AiFillHeart } from "react-icons/ai";
+import useTitle from "../../hooks/useTitle";
 
 const ProductDetails = () => {
   const [activeComponent, setActiveComponent] = useState("ProductDescription"); //by default component uses active component
@@ -31,6 +32,9 @@ const ProductDetails = () => {
   const relatedProducts = products?.filter(
     (product) => product._id !== productData._id
   );
+
+  // Use tile by custom useTitle Hook
+  useTitle(`Product-Details-${productData?._id}`);
 
   const handleButtonClick = (componentName) => {
     setActiveComponent(componentName);
@@ -53,7 +57,7 @@ const ProductDetails = () => {
       color: productData.color,
       isPurchase: false,
     };
-    
+
     // Save cart product to database
     saveCartProduct(product);
     toast.success("Product add to cart successfully");
@@ -79,7 +83,7 @@ const ProductDetails = () => {
           </button>
 
           <div className="flex items-center gap-1 my-5">
-            <AiFillHeart className="text-sky-500 text-xl"/>
+            <AiFillHeart className="text-sky-500 text-xl" />
             <p className="text-sm uppercase">Add To Wishlist</p>
           </div>
           <h6 className="uppercase">SKU: {productData?.SKU}</h6>
@@ -88,7 +92,12 @@ const ProductDetails = () => {
             <p>Tags:</p>
             <div className="flex items-center gap-1">
               {productData?.tags.map((item, index) => (
-                <p className="py-1 px-3 border rounded-sm text-sm uppercase" key={index}>{item}</p>
+                <p
+                  className="py-1 px-3 border rounded-sm text-sm uppercase"
+                  key={index}
+                >
+                  {item}
+                </p>
               ))}
             </div>
           </div>
@@ -97,13 +106,22 @@ const ProductDetails = () => {
 
       <div className="my-10">
         <div className="flex items-center justify-center gap-8">
-          <button className="text-xl font-semibold" onClick={() => handleButtonClick("ProductDescription")}>
+          <button
+            className="text-xl font-semibold"
+            onClick={() => handleButtonClick("ProductDescription")}
+          >
             Description
           </button>
-          <button className="text-xl font-semibold" onClick={() => handleButtonClick("ProductInformation")}>
+          <button
+            className="text-xl font-semibold"
+            onClick={() => handleButtonClick("ProductInformation")}
+          >
             Additional Information
           </button>
-          <button className="text-xl font-semibold" onClick={() => handleButtonClick("ProductReview")}>
+          <button
+            className="text-xl font-semibold"
+            onClick={() => handleButtonClick("ProductReview")}
+          >
             Review
           </button>
         </div>

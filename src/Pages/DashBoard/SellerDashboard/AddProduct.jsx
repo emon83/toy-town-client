@@ -2,15 +2,20 @@ import { useForm } from "react-hook-form";
 import { useSaveProductMutation } from "../../../redux/features/products/productsApi";
 import toast, { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import useTitle from "../../../hooks/useTitle";
 
 const AddProduct = () => {
   const { email, name } = useSelector((state) => state.userSlice);
   const [saveProduct] = useSaveProductMutation();
+  // Use tile by custom useTitle Hook
+  useTitle("Add Product");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMGBB_KEY
   }`;

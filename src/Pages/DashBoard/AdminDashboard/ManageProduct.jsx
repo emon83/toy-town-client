@@ -7,12 +7,15 @@ import {
 import UpdateProductModal from "../../../components/Dashboard/UpdateProduct/UpdateProductModal";
 import { useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import useTitle from "../../../hooks/useTitle";
 
 const ManageProduct = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
   const [deleteProduct] = useDeleteProductMutation();
   const [approveProduct] = useApproveProductMutation();
   const [isOpen, setIsOpen] = useState(false);
+  // Use tile by custom useTitle Hook
+  useTitle("Manage Products");
 
   const closeModal = () => {
     setIsOpen(false);

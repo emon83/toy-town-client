@@ -3,6 +3,7 @@ import { useDeleteProductMutation, useGetProductsByEmailQuery } from "../../../r
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import UpdateProductModal from "../../../components/Dashboard/UpdateProduct/UpdateProductModal";
+import useTitle from "../../../hooks/useTitle";
 
 const MyProduct = () => {
   const { email } = useSelector((state) => state.userSlice);
@@ -13,6 +14,8 @@ const MyProduct = () => {
   } = useGetProductsByEmailQuery(email);
   const [deleteProduct] = useDeleteProductMutation();
   const [isOpen, setIsOpen] = useState(false);
+  // Use tile by custom useTitle Hook
+  useTitle("My Product");
 
   const closeModal = () => {
       setIsOpen(false);

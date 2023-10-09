@@ -6,6 +6,7 @@ import {
   useMakeUserMutation,
 } from "../../../redux/features/user/userApi";
 import toast, { Toaster } from "react-hot-toast";
+import useTitle from "../../../hooks/useTitle";
 
 const ManageUsers = () => {
   const { data: users, isLoading, error } = useGetUsersQuery();
@@ -13,6 +14,8 @@ const ManageUsers = () => {
   const [makeAdmin] = useMakeSellerMutation();
   const [makeUser] = useMakeUserMutation();
   const [deleteUser] = useDeleteUserMutation();
+  // Use tile by custom useTitle Hook
+  useTitle("Manage Users");
 
   const handleMakeAdmin = (user) => {
     makeAdmin(user._id);
