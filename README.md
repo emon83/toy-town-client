@@ -15,7 +15,6 @@ Features Add this Project :
 
 Mingle Motion Express is a video editing platform that runs in the browser. It is built with React, Redux,  MongoDB, stripe and ssl-commerz, NodeJS, fabric.js, Tailwindcss, Mobx, typescript and etc.
 
-![banner](https://github.com/shanto001971/shanto001971-online-video-editing-platform-client/assets/109459931/86ae94f9-5e6d-4866-8870-536482c94cbd)
 
 ## Main Features
 
