@@ -1,63 +1,40 @@
-"# b7a11-toy-marketplace-client-side-emon83" 
+# Online toy marketplace platform
 
-Features Add this Project : 
- * Firstly we create a website that shows the all Educational toy (Toy Town) thats have kids variants educational toy. Like Science category toy, language category toy , engineering category toy etc.
- * Second we use active nav-link in this project and navbar are mobile responsive. And in Home section we create hero section then Gallery section, shop by category section, Girls collection section , From The Blog section and Footer.
- * Third In Hand-Picked Shop by category section if you select any tab like science toys, language toy , engineering toys every sub category toy have 3 toys and short information for toys. if user click view details button page goes on shop by category details page here are products details and its private route. Without a login, you can not visit the single toy details page.
- * Fourth add a toy page user add toy and it's also private route. this page have toy every information and if user fill up this information and click add a toy button data store in database. and this product show in all toys page
- * Fifth In all toys page are store all toy. When user clicking the details button page goes on toy details page. where includes toy information picture, toy name, seller name, seller email, price, rating, available quantity, and detail description. And this page Show 20 results by default by using limit and implement a search system on this page, based on the Toy name.
- * Sixth In my toy page here are all current user  toys .If a user logs in, they will see the My Toys page, which it will show all the toys information they have added from the Add A Toy page in a tabular form. Each row will have an update and delete button.  If they click the update button, they can update the Toy information (Price, available quantity, Detail description). If they click the delete button, the Toy will be removed from the list. Before the delete, ask for a delete confirmation.
- * Seventh In this project we use AOS package for simple animation and dynamic title and Home page of your website mobile & desktop responsive. and create 404, blog page etc. lots of things.
+Toy Town is a online kids toy marketplace platform that runs in the browser. It is built with React, Redux,  MongoDB, NodeJS, Tailwindcss, React Hot Toast, React Icons, Spinner and etc.
 
+### Main Features
+- [x] User can 
+  - [x] Select a Product or Add to cart this product
+  - [x] User can Parches this product (without payment method)
+  - [x] User can feedback for our product
+  - [x] User can check his/her payment history
+  - [x] User can experience (give feedback) for our website.
+- [x] Seller can
+  - [x] Add a product for sell (if admin approved)
+  - [x] Seller can check his/her product and product details
+- [x] Admin can
+  - [x] Manage users (make user ----> Instructor ----> Admin and Delete a user)
+  - [x] Manage product(add, update and delete products)
+  - [x] Admin can add products if he/she want
 
- <!-- New code -->
-# Online video editing platform
-
-Mingle Motion Express is a video editing platform that runs in the browser. It is built with React, Redux,  MongoDB, stripe and ssl-commerz, NodeJS, fabric.js, Tailwindcss, Mobx, typescript and etc.
-
-
-## Main Features
-
-- [x] User can add
-  - [x] Text
-  - [x] Images
-  - [x] Video
-  - [x] Audio
-  - [x] Animation
-- [x] User can change
-  - [x] Canvas Background Color
-- [x] Timeline
-- [x] Export Video with Audio
-
-## Main Issues
-
-1. There might be problem in audio handling
-2. Exported video doesn't have time duration
-3. Exported video have flickering issue
+### Main Issues
+* In this time this website has no issue..
 
 
-## Future Features
-
-1. Filters
-2. Properties Editing panel
-3. Video Trimming
+### Future Features
+1. Use React skeleton for UI shifting
+2. Add pricing functionality (stripe payment methods)
 
 ## Other Features
 - [x] In Homepage
-  - [x] Scroll icon
-  - [x] Chatbot
   - [x] Dark-light mode
   - [x] User authentication
   - [x] Profile-photo other functionality
 - [x] Other Functionality
   - [x] Private Route
-  - [x] Email with us
-  - [x] Work with us
-  - [x] Donation
-  - [x] Pricing functionality
   - [x] Give feedback
 
-## ReactJS Default Guide (Updated)
+### ReactJS Default Guide (Updated)
 
 This is a [vitejs.dev](https://vitejs.dev/) project bootstrapped with [`vite-react-app`](https://github.com/vitejs/vite).
 
