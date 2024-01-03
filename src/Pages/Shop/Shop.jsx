@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import SingleProduct from "./SingleProduct";
 import { useGetProductsByCategoryQuery } from "../../redux/features/products/productsApi";
 import useTitle from "../../hooks/useTitle";
+import CardSkeleton from "../../components/Card/CardSkeletion";
 
 const Shop = () => {
   const [selectedCategory, setSelectedCategory] = useState("Bed"); // Default category
@@ -45,7 +47,11 @@ const Shop = () => {
       </div>
       <div className="w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mt-12 md:mt-0">
-        {productData &&
+        {isLoading &&
+          Array.from(new Array(6)).map((item, index) => (
+            <CardSkeleton key={index} height={300} />
+          ))}
+        {!isLoading && productData &&
           productData.length > 0 &&
           productData?.map((product) => (
             <SingleProduct key={product._id} product={product} />

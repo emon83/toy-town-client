@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import CardSkeleton from "../../../components/Card/CardSkeletion";
 import { useGetProductsQuery } from "../../../redux/features/products/productsApi";
 import NewSingleProduct from "./NewSingleProduct";
 
@@ -14,7 +16,12 @@ const NewArrivalsProducts = () => {
         Consectetur adipiscing elit ut aliquam duis convalli <br /> tellus id interdum ve.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 px-6 sm:px-8 md:px-0">
-        {newArrivalsProducts?.map((product) => (
+
+      {isLoading &&
+          Array.from(new Array(4)).map((item, index) => (
+            <CardSkeleton key={index} height={300} />
+          ))}
+        {!isLoading && newArrivalsProducts?.map((product) => (
           <NewSingleProduct key={product._id} product={product} />
         ))}
       </div>

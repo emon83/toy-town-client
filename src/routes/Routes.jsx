@@ -32,11 +32,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <PrivateRoute>
-            <Home />
-          </PrivateRoute>
-        ),
+        element: <Home />,
       },
       {
         path: "/shop",
@@ -117,7 +113,7 @@ const router = createBrowserRouter([
         path: "/dashboard/payment",
         element: <Payment />,
       },
-      // TODO: 
+      // TODO:
       {
         path: "/dashboard/payment-history",
         element: <PaymentHistory />,
