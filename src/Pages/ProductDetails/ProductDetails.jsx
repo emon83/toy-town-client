@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import ProductDescription from "./ProductDescription";
 import ProductInformation from "./ProductInformation";
@@ -68,7 +69,7 @@ const ProductDetails = () => {
     <div className="my-container mb-10">
       <div className="md:flex items-center gap-10">
         <div className="md:w-[45%]">
-          <img className="" src={productData?.img} alt="Product Image" />
+          <img className="hover:scale-105 duration-[1500ms] rounded-sm" src={productData?.img} alt="Product Image" />
         </div>
         <div className="md:w-[55%]">
           <h2 className="text-4xl font-medium">{productData?.product_name}</h2>
@@ -107,19 +108,19 @@ const ProductDetails = () => {
       <div className="my-10">
         <div className="flex items-center justify-center gap-8">
           <button
-            className="text-xl font-semibold"
+          className={`text-xl ${activeComponent === 'ProductDescription'? 'font-semibold': "font-normal"}`}
             onClick={() => handleButtonClick("ProductDescription")}
           >
             Description
           </button>
           <button
-            className="text-xl font-semibold"
+            className={`text-xl font-semibold ${activeComponent === 'ProductInformation'? 'font-semibold': "font-normal"}`}
             onClick={() => handleButtonClick("ProductInformation")}
           >
             Additional Information
           </button>
           <button
-            className="text-xl font-semibold"
+            className={`text-xl font-semibold ${activeComponent === 'ProductReview'? 'font-semibold': "font-normal"}`}
             onClick={() => handleButtonClick("ProductReview")}
           >
             Review

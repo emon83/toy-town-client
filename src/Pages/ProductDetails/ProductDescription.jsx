@@ -13,7 +13,9 @@ const ProductDescription = ({ productData }) => {
           Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a
           ornare odio. Sed non mauris vitae erat consequat auctor eu in elit.
         </p>
-        <h4 className="text-xl uppercase font-semibold mt-4">Care Instruction</h4>
+        <h4 className="text-xl uppercase font-semibold mt-4">
+          Care Instruction
+        </h4>
         <p>
           We don’t like to label, but this one comes in handy. Follow the
           instructions on the label before you wash this product or give it to
@@ -27,16 +29,21 @@ const ProductDescription = ({ productData }) => {
             <TbIroningOff className="w-8 h-8" />
           </div>
           <p className="mt-4">
-            <span className="font-semibold">Composition: </span>Our toy shop website is a treasure trove
-            of playtime wonders, carefully curated to inspire and delight. From
-            classic toys that have stood the test of time to the latest
-            cutting-edge innovations, we offer a diverse range of products that
-            cater to every age, interest, and imagination.
+            <span className="font-semibold">Composition: </span>Our toy shop
+            website is a treasure trove of playtime wonders, carefully curated
+            to inspire and delight. From classic toys that have stood the test
+            of time to the latest cutting-edge innovations, we offer a diverse
+            range of products that cater to every age, interest, and
+            imagination.
           </p>
         </div>
       </div>
       <div className="w-full md:w-1/2">
-        <img src={productData?.details_img} alt="" />
+        <img
+          className="hover:scale-105 duration-[1500ms] rounded-sm"
+          src={productData?.details_img}
+          alt="Product Description Image"
+        />
       </div>
     </div>
   );

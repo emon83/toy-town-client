@@ -4,7 +4,11 @@ const NewSingleProduct = ({ product }) => {
   return (
     <div className="grid place-items-center border rounded-3xl group shadow-md">
       <Link to={`product-details/${product._id}`}>
-        <img src={product.img} alt="Product Image" />
+        <img
+          className="hover:scale-105 duration-[1500ms] rounded-sm"
+          src={product.img}
+          alt="Product Image"
+        />
         <h6 className="uppercase text-sm text-gray-600">
           {product.product_category}S
         </h6>
@@ -13,9 +17,9 @@ const NewSingleProduct = ({ product }) => {
           ${product.price}
         </h6>
         <div className="my-3">
-        <button className="hidden group-hover:block transition-all delay-150 duration-300 text-center mx-auto btn-color text-white uppercase btn btn-sm border-none">
-          Add To Cart
-        </button>
+          <button className="hidden group-hover:block transition-all delay-1000 duration-500 text-center mx-auto btn-color text-white uppercase btn btn-sm border-none">
+            Add To Cart
+          </button>
         </div>
       </Link>
     </div>

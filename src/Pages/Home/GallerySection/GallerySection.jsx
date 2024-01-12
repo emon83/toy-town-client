@@ -73,7 +73,7 @@ const GallerySection = () => {
         {galleryImgData?.map((imgData, index) => (
           <div className="group" key={index}>
             <img
-              className="group-hover:scale-105 transition-transform rounded-md"
+              className="group-hover:scale-105 duration-[1500ms] transition-transform rounded-md"
               src={imgData.img}
               alt="Gallery Image"
             />
