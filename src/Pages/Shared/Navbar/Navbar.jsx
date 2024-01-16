@@ -29,7 +29,7 @@ const Navbar = () => {
     toast.success("User logout successful");
   };
   return (
-    <div className="bg-gray-100 sticky top-0 z-10 bg-transparent backdrop-blur-md px-4 mx-auto h-[85px]">
+    <div className="bg-gray-100 sticky top-0 z-10 bg-transparent backdrop-blur-md px-1 sm:px-4 mx-auto md:h-[85px] sm:h-16 h-12">
       <Toaster />
       <div className="relative flex items-center justify-between">
         <Link
@@ -38,8 +38,8 @@ const Navbar = () => {
           title="ToyTown"
           className="inline-flex items-center"
         >
-          <div className="flex items-center justify-center w-40 h-20">
-            <img className="w-32" src={logo} alt="" />
+          <div className="flex items-center justify-center md:w-40 sm:w-36 w-28 md:h-20 sm:h-16 h-12">
+            <img className="md:w-32 sm:w-28 w-24" src={logo} alt="Logo Image" />
           </div>
         </Link>
         <ul className="items-center hidden space-x-8 lg:flex">
@@ -132,8 +132,8 @@ const Navbar = () => {
           </button>
           {isMenuOpen && (
             <div className="absolute z-10 top-0 left-0 w-full">
-              <div className="p-5 bg-white border rounded shadow-sm">
-                <div className="flex items-center justify-between mb-4">
+              <div className="sm:p-5 px-3 py-2 bg-white border rounded shadow-sm">
+                <div className="flex items-center justify-between sm:mb-4 h-12 sm:w-16">
                   <div>
                     <Link
                       to="/"
@@ -153,7 +153,7 @@ const Navbar = () => {
                       className="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+                      <svg className="sm:w-5 w-4 text-gray-600" viewBox="0 0 24 24">
                         <path
                           fill="currentColor"
                           d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
@@ -163,13 +163,13 @@ const Navbar = () => {
                   </div>
                 </div>
                 <nav>
-                  <ul className="space-y-4">
+                  <ul className="sm:space-y-3 space-y-1">
                     <li>
                       <Link
                         to="/shop"
                         aria-label="Shop"
                         title="Shop"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        className="text-sm sm:text-[15px] font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Shop
                       </Link>
@@ -179,7 +179,7 @@ const Navbar = () => {
                         to="/pricing"
                         aria-label="Pricing"
                         title="Pricing"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        className="text-sm sm:text-[15px] font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Pricing
                       </Link>
@@ -194,7 +194,7 @@ const Navbar = () => {
                          : "/dashboard/my-cart"}
                         aria-label="DashBoard"
                         title="DashBoard"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        className="text-sm sm:text-[15px] font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         DashBoard
                       </Link>
@@ -228,7 +228,7 @@ const Navbar = () => {
                           to="/login"
                           aria-label="Login"
                           title="Login"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          className="text-sm sm:text-[15px] font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           <button className="btn btn-color border-none h-4 rounded-3xl btn-sm px-6 -ml-2">
                             Login
