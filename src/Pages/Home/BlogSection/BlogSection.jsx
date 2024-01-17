@@ -11,12 +11,11 @@ const BlogSection = () => {
   }, []);
 
   return (
-    <div className="my-container my-32">
+    <div className="my-container mt-14 md:mt-20 lg:mt-24">
       <div className="text-center px-6 md:px-0">
-        <h2 className="text-3xl">Read Our Blog</h2>
-        <p className="text-lg mt-4 mb-8 sm:mb-12">
+        <h2 className="text-lg sm:text-2xl md:text-3xl">Read Our Blog</h2>
+        <p className="text-xs sm:text-base md:text-lg sm:mt-2 md:mt-4 mb-4 sm:mb-6 md:mb-8 text-gray-600 px-10">
           We celebrate childhood by supporting babies, children, and families
-          <br />
           with thoughtful designs and quality materials.
         </p>
       </div>

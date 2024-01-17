@@ -58,7 +58,7 @@ const CategorySection = () => {
     },
   ];
   return (
-    <div className="my-container">
+    <div className="my-container mt-14 md:mt-20 lg:mt-24">
       <Swiper
         spaceBetween={100}
         slidesPerView={7}
@@ -76,7 +76,7 @@ const CategorySection = () => {
               <Link to="/shop">
                 <div className="grid place-items-center cursor-pointer w-32 h-26">
                   <img className="w-16 sm:w-20 md:w-28 lg:w-32" src={category.img} alt="Category Img" />
-                  <p className="mt-2">{category.c_name}</p>
+                  <p className="text-xs sm:text-sm md:text-base mt-2">{category.c_name}</p>
                 </div>
               </Link>
             </SwiperSlide>

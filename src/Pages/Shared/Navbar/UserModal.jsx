@@ -33,7 +33,7 @@ function UserModal({ handleLogout }) {
           className={`dropdown-content mb-52 z-[1] menu -mt-24 lg:-mt-0 ml-12 md:ml-20 lg:ml-0 p-3 md:p-5 text-center shadow-lg  rounded-box max-w-[400px] md:w-[400px] ${changesThemeTextColor()} ${theme.mode === 'dark' ? 'bg-gray-800' : 'bg-sky-50'}`}
         >
           {" "}
-          <p className="py-2">{email}</p>
+          <p className="py-2 text-sm sm:text-base">{email}</p>
           <Link to="/user-profile">
             <div className="text-center">
               <div className="btn btn-circle relative text-white text-base font-bold outline-none border-none  hover:text-white btn-color">
@@ -55,25 +55,25 @@ function UserModal({ handleLogout }) {
               </div>
             </div>
           </Link>
-          <p className="py-2">
+          <p className="py-2 text-sm sm:text-base">
             Hi,{name?.split(" ")[0] || "User"}
           </p>
           <div onClick={openGoogleAccount} className="text-center">
-            <button className=" py-1 text-sm w-56 text-color font-semibold rounded-full border  border-gray-400">
+            <button className=" py-1 text-xs sm:text-sm w-56 text-color font-semibold rounded-full border  border-gray-400">
               Manage Your Account
             </button>
           </div>
           <div className="md:flex text-start">
             <Link to="login">
               {" "}
-              <span className="  md:rounded-l-xl text-sm  text-gray-600 md:ml-6 py-2 px-8 font-semibold my-3  bg-gray-200 flex items-center gap-2  ">
+              <span className="text-xs sm:text-sm  md:rounded-l-xl text-gray-600 md:ml-6 py-2 px-8 font-semibold my-3  bg-gray-200 flex items-center gap-2  ">
                 <BsPlusCircle className=" text-blue-700 " /> Add Account
               </span>
             </Link>
             <span
               onClick={handleLogout}
               style={{ marginLeft: "2px" }}
-              className="  md:rounded-r-xl cursor-pointer py-2 px-8 text-sm  flex items-center gap-2   text-gray-600 font-semibold my-3  bg-gray-200"
+              className="text-xs sm:text-sm  md:rounded-r-xl cursor-pointer py-2 px-8 flex items-center gap-2   text-gray-600 font-semibold my-3  bg-gray-200"
             >
               {" "}
               <MdOutlineLogout className="text-black" />

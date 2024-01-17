@@ -19,7 +19,7 @@ const collectionData = [
 
 const CollectionSection = () => {
   return (
-    <div className="mt-28 w-full">
+    <div className="mt-14 md:mt-20 lg:mt-24 w-full">
       <div className="md:flex items-center justify-center xl:gap-20 lg:gap-16 gap-2 mx-auto px-2 sm:px-4">
         {collectionData &&
           collectionData.length > 0 &&
